@@ -15,3 +15,6 @@ DDT2-12 - Improve MOLS algorithm (Main problem)
  
 DDT2-14 - Liver Injury (Main problem)
  
+smiles-pipeline contains code for predicting various outputs from smiles data, which will be useful for DDT2-04 and DDT2-14
+
+
