@@ -1,0 +1,31 @@
+c     library name : mols.par   
+
+c     Copyright (c) 2013 P.Arun Prasad, S.Nehru Viji and N.Gautham
+
+c     This library is free software; you can redistribute it and/or
+c     modify it under the terms of the GNU Lesser General Public
+c     License as published by the Free Software Foundation; either
+c     version 2.1 of the License, or (at your option) any later version.
+c
+c     This library is distributed in the hope that it will be useful,
+c     but WITHOUT ANY WARRANTY; without even the implied warranty of
+c     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+c     Lesser General Public License for more details.
+c
+c     You should have received a copy of the GNU Lesser General Public
+c     License along with this library; if not, write to the Free
+c     Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+c     02110-1301  USA
+c
+c
+c     contact : n_gautham@hotmail.com  
+
+	parameter (maxatm = 500, maxpar = 60, maxord = 60, 
+     $		   maxhb = 200, maxstr = 3000,  maxres = 50 ,maxi=1000,
+     &             mnatp = 9000)
+
+c	common /par/ natom, ntor, nhb, ns, lres
+c	common /atm/ atmno(maxatm),atname(maxatm),rename(maxatm),resno(maxatm)
+c	common /var/ ivat(maxres*8,4),vty(maxres*8),ivres(maxres*8)
+c	character atname*4,rename*4
+

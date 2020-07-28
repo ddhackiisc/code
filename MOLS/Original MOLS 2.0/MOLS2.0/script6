@@ -1,0 +1,10 @@
+#script to copy partner residues to file 'partners'
+
+fname=sortres
+filen=pfile1.pdb
+
+   for x in `cat $fname`
+        do
+        awk '$6'==$x $filen>>partners
+        done
+

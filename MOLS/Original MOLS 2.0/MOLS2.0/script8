@@ -1,0 +1,7 @@
+
+#adding hydrogens to partners
+
+chmod 777 reduce
+cp partners partners_h
+./reduce -DB red_dict.txt -Quiet partners>partners_h
+grep "ATOM" partners_h > partners

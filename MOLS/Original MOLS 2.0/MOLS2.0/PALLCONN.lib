@@ -1,0 +1,965 @@
+ALA A 24
+ bond    HN  N  
+ bond    N   CA 
+ bond    N   H  
+ bond    N   HN 
+ bond    H   N  
+ bond    CA  N  
+ bond    CA  C  
+ bond    CA  HA 
+ bond    CA  CB 
+ bond    HA  CA 
+ bond    CB  CA 
+ bond    CB 3HB 
+ bond    CB 1HB 
+ bond    CB 2HB 
+ bond   3HB  CB 
+ bond   1HB  CB 
+ bond   2HB  CB 
+ bond    C   CA 
+ bond    C   O  
+ bond    C   O1 
+ bond    C   N  
+ bond    O   C  
+ bond    O1  C  
+ bond    O1  HO 
+ bond    HO  O1 
+ARG R 52
+ bond    HN  N  
+ bond    N   CA 
+ bond    N   H  
+ bond    N   HN 
+ bond    H   N  
+ bond    CA  N  
+ bond    CA  C  
+ bond    CA  HA 
+ bond    CA  CB 
+ bond    HA  CA 
+ bond    CB  CA 
+ bond    CB 1HB 
+ bond    CB 2HB 
+ bond   1HB  CB 
+ bond   2HB  CB 
+ bond    CB  CG 
+ bond    CG  CB 
+ bond    CG 1HG 
+ bond    CG 2HG 
+ bond   1HG  CG 
+ bond   2HG  CG 
+ bond    CG  CD
+ bond    CD  CG 
+ bond    CD 1HD 
+ bond    CD 2HD 
+ bond   1HD  CD 
+ bond   2HD  CD 
+ bond    CD  NE 
+ bond    NE  HE 
+ bond    NE  CZ 
+ bond    HE  NE 
+ bond    CZ  NH1 
+ bond    CZ  NH2 
+ bond    CZ  NE 
+ bond    NH1 CZ 
+ bond    NH11HH1 
+ bond    NH12HH1 
+ bond   1HH1 NH1 
+ bond   2HH1 NH1 
+ bond    NH2 CZ 
+ bond    NH21HH2
+ bond    NH22HH2
+ bond   1HH2 NH2 
+ bond   2HH2 NH2 
+ bond    C   CA 
+ bond    C   O  
+ bond    C   O1 
+ bond    C   N  
+ bond    O   C  
+ bond    O1  C  
+ bond    O1  HO 
+ bond    HO  O1 
+ASN N 33
+ bond    HN  N  
+ bond    N   CA 
+ bond    N   H  
+ bond    N   HN 
+ bond    H   N  
+ bond    CA  N  
+ bond    CA  C  
+ bond    CA  HA 
+ bond    CA  CB 
+ bond    HA  CA 
+ bond    CB  CA 
+ bond    CB 1HB 
+ bond    CB 2HB 
+ bond    CB  CG 
+ bond   1HB  CB 
+ bond   2HB  CB 
+ bond    CG  CB 
+ bond    CG  OD1 
+ bond    CG  ND2 
+ bond    OD1 CG 
+ bond    ND2 CG 
+ bond    ND21HD2 
+ bond    ND22HD2 
+ bond   1HD2 ND2 
+ bond   2HD2 ND2 
+ bond    C   CA 
+ bond    C   O  
+ bond    C   O1 
+ bond    C   N  
+ bond    O   C  
+ bond    O1  C  
+ bond    O1  HO 
+ bond    HO  O1 
+ASP D 31
+ bond    HN  N  
+ bond    N   CA 
+ bond    N   H  
+ bond    N   HN 
+ bond    H   N  
+ bond    CA  N  
+ bond    CA  C  
+ bond    CA  HA 
+ bond    CA  CB 
+ bond    HA  CA 
+ bond    CB  CA 
+ bond    CB 1HB 
+ bond    CB 2HB 
+ bond    CB  CG 
+ bond   1HB  CB 
+ bond   2HB  CB 
+ bond    CG  CB 
+ bond    CG  OD1 
+ bond    CG  OD2 
+ bond    OD1 CG 
+ bond    OD2 CG 
+ bond    OD2 HD2 
+ bond    HD2 OD2 
+ bond    C   CA 
+ bond    C   O  
+ bond    C   O1 
+ bond    C   N  
+ bond    O   C  
+ bond    O1  C  
+ bond    O1  HO 
+ bond    HO  O1 
+CYS C 27
+ bond    HN  N  
+ bond    N   CA 
+ bond    N   H  
+ bond    N   HN 
+ bond    H   N  
+ bond    CA  N  
+ bond    CA  C  
+ bond    CA  HA 
+ bond    CA  CB 
+ bond    HA  CA 
+ bond    CB  CA 
+ bond    CB 1HB 
+ bond    CB 2HB 
+ bond    CB  SG 
+ bond   1HB  CB 
+ bond   2HB  CB 
+ bond    SG  CB 
+ bond    SG 3HG 
+ bond   3HG  SG 
+ bond    C   CA 
+ bond    C   O  
+ bond    C   O1 
+ bond    C   N  
+ bond    O   C  
+ bond    O1  C  
+ bond    O1  HO 
+ bond    HO  O1 
+GLN Q 39
+ bond    HN  N  
+ bond    N   CA 
+ bond    N   H  
+ bond    N   HN 
+ bond    H   N  
+ bond    CA  N  
+ bond    CA  C  
+ bond    CA  HA 
+ bond    CA  CB 
+ bond    HA  CA 
+ bond    CB  CA 
+ bond    CB 1HB 
+ bond    CB 2HB 
+ bond    CB  CG 
+ bond   1HB  CB 
+ bond   2HB  CB 
+ bond    CG  CB 
+ bond    CG 1HG 
+ bond    CG 2HG 
+ bond    CG  CD 
+ bond   1HG  CG 
+ bond   2HG  CG 
+ bond    CD  CG 
+ bond    CD  OE1 
+ bond    CD  NE2 
+ bond    OE1 CD 
+ bond    NE2 CD 
+ bond    NE21HE2 
+ bond    NE22HE2 
+ bond   1HE2 NE2 
+ bond   2HE2 NE2 
+ bond    C   CA 
+ bond    C   O  
+ bond    C   O1 
+ bond    C   N  
+ bond    O   C  
+ bond    O1  C  
+ bond    O1  HO 
+ bond    HO  O1 
+GLU E 37
+ bond    HN  N  
+ bond    N   CA 
+ bond    N   H  
+ bond    N   HN 
+ bond    H   N  
+ bond    CA  N  
+ bond    CA  C  
+ bond    CA  HA 
+ bond    CA  CB 
+ bond    HA  CA 
+ bond    CB  CA 
+ bond    CB 1HB 
+ bond    CB 2HB 
+ bond    CB  CG 
+ bond   1HB  CB 
+ bond   2HB  CB 
+ bond    CG  CB 
+ bond    CG 1HG 
+ bond    CG 2HG 
+ bond    CG  CD 
+ bond   1HG  CG 
+ bond   2HG  CG 
+ bond    CD  CG 
+ bond    CD  OE1 
+ bond    CD  OE2 
+ bond    OE1 CD 
+ bond    OE2 CD 
+ bond    OE2 HE2 
+ bond    HE2 OE2 
+ bond    C   CA 
+ bond    C   O  
+ bond    C   O1 
+ bond    C   N  
+ bond    O   C  
+ bond    O1  C  
+ bond    O1  HO 
+ bond    HO  O1 
+GLY G 19
+ bond    HN  N  
+ bond    N   CA 
+ bond    N   H  
+ bond    N   HN 
+ bond    H   N  
+ bond    CA  N  
+ bond    CA  C  
+ bond    CA 1HA 
+ bond    CA 2HA 
+ bond   1HA  CA 
+ bond   2HA  CA 
+ bond    C   CA 
+ bond    C   O  
+ bond    C   O1 
+ bond    C   N  
+ bond    O   C  
+ bond    O1  C  
+ bond    O1  HO 
+ bond    HO  O1 
+HIS H 39
+ bond    HN  N  
+ bond    N   CA 
+ bond    N   H  
+ bond    N   HN 
+ bond    H   N  
+ bond    CA  N  
+ bond    CA  C  
+ bond    CA  HA 
+ bond    CA  CB 
+ bond    HA  CA 
+ bond    CB  CA 
+ bond    CB 1HB 
+ bond    CB 2HB 
+ bond    CB  CG 
+ bond   1HB  CB 
+ bond   2HB  CB 
+ bond    CG  CB 
+ bond    CG  ND1 
+ bond    CG  CD2 
+ bond    ND1 CG 
+ bond    ND1 CE1 
+ bond    CD2 CG 
+ bond    CD2 HD2 
+ bond    CD2 NE2 
+ bond    HD2 CD2 
+ bond    NE2 CD2 
+ bond    NE2 HE2 
+ bond    NE2 CE1 
+ bond    CE1 ND1 
+ bond    CE1 HE1 
+ bond    CE1 NE2 
+ bond    C   CA 
+ bond    C   O  
+ bond    C   O1 
+ bond    C   N  
+ bond    O   C  
+ bond    O1  C  
+ bond    O1  HO 
+ bond    HO  O1 
+ILE I 43
+ bond    HN  N  
+ bond    N   CA 
+ bond    N   H  
+ bond    N   HN 
+ bond    H   N  
+ bond    CA  N  
+ bond    CA  C  
+ bond    CA  HA 
+ bond    CA  CB 
+ bond    HA  CA 
+ bond    CB  CA 
+ bond    CB  HB 
+ bond    CB  CG1 
+ bond    CB  CG2 
+ bond    HB  CB 
+ bond    CG1 CB 
+ bond    CG11HG1 
+ bond    CG12HG1 
+ bond    CG1 CD1 
+ bond    CG2 CB 
+ bond    CG21HG2 
+ bond    CG22HG2 
+ bond    CG23HG2 
+ bond   1HG1 CG1 
+ bond   2HG1 CG1 
+ bond   1HG2 CG2 
+ bond   2HG2 CG2 
+ bond   3HG2 CG2 
+ bond    CD1 CG1 
+ bond    CD11HD1 
+ bond    CD12HD1 
+ bond    CD13HD1 
+ bond   1HD1 CD1 
+ bond   2HD1 CD1 
+ bond   3HD1 CD1 
+ bond    C   CA 
+ bond    C   O  
+ bond    C   O1 
+ bond    C   N  
+ bond    O   C  
+ bond    O1  C  
+ bond    O1  HO 
+ bond    HO  O1 
+LEU L 43
+ bond    HN  N  
+ bond    N   CA 
+ bond    N   H  
+ bond    N   HN 
+ bond    H   N  
+ bond    CA  N  
+ bond    CA  C  
+ bond    CA  HA 
+ bond    CA  CB 
+ bond    HA  CA 
+ bond    CB  CA 
+ bond    CB 1HB 
+ bond    CB 2HB 
+ bond    CB  CG 
+ bond   1HB  CB 
+ bond   2HB  CB 
+ bond    CG  CB 
+ bond    CG  HG 
+ bond    CG  CD1 
+ bond    CG  CD2 
+ bond    HG  CG 
+ bond    CD1 CG 
+ bond    CD2 CG 
+ bond    CD11HD1 
+ bond    CD12HD1 
+ bond    CD13HD1 
+ bond    CD21HD2 
+ bond    CD22HD2 
+ bond    CD23HD2 
+ bond   1HD1 CD1 
+ bond   2HD1 CD1 
+ bond   3HD1 CD1 
+ bond   1HD2 CD2 
+ bond   2HD2 CD2 
+ bond   3HD2 CD2 
+ bond    C   CA 
+ bond    C   O  
+ bond    C   O1 
+ bond    C   N  
+ bond    O   C  
+ bond    O1  C  
+ bond    O1  HO 
+ bond    HO  O1 
+LYS K 48
+ bond    HN  N  
+ bond    N   CA 
+ bond    N   H  
+ bond    N   HN 
+ bond    H   N  
+ bond    CA  N  
+ bond    CA  C  
+ bond    CA  HA 
+ bond    CA  CB 
+ bond    HA  CA 
+ bond    CB  CA 
+ bond    CB 1HB 
+ bond    CB 2HB 
+ bond    CB  CG 
+ bond   1HB  CB 
+ bond   2HB  CB 
+ bond    CG  CB 
+ bond    CG  CD 
+ bond    CG 1HG 
+ bond    CG 2HG 
+ bond   1HG  CG 
+ bond   2HG  CG 
+ bond    CD  CG 
+ bond    CD  CE 
+ bond    CD 1HD 
+ bond    CD 2HD 
+ bond   1HD  CD 
+ bond   2HD  CD 
+ bond    CE  CD 
+ bond    CE  NZ 
+ bond    CE 1HE 
+ bond    CE 2HE 
+ bond   1HE  CE 
+ bond   2HE  CE 
+ bond    NZ  CE 
+ bond    NZ 1HZ 
+ bond    NZ 2HZ 
+ bond    NZ 3HZ
+ bond   1HZ  NZ 
+ bond   2HZ  NZ 
+ bond    C   CA 
+ bond    C   O  
+ bond    C   O1 
+ bond    C   N  
+ bond    O   C  
+ bond    O1  C  
+ bond    O1  HO 
+ bond    HO  O1 
+MET M 39
+ bond    HN  N  
+ bond    N   CA 
+ bond    N   H  
+ bond    N   HN 
+ bond    H   N  
+ bond    CA  N  
+ bond    CA  C  
+ bond    CA  HA 
+ bond    CA  CB 
+ bond    HA  CA 
+ bond    CB  CA 
+ bond    CB 1HB 
+ bond    CB 2HB 
+ bond    CB  CG 
+ bond   1HB  CB 
+ bond   2HB  CB 
+ bond    CG  CB 
+ bond    CG  SD 
+ bond    CG 1HG 
+ bond    CG 2HG 
+ bond   1HG  CG 
+ bond   2HG  CG 
+ bond    SD  CG 
+ bond    SD  CE 
+ bond    CE  SD 
+ bond    CE 1HE 
+ bond    CE 2HE 
+ bond    CE 3HE 
+ bond   1HE  CE 
+ bond   2HE  CE 
+ bond   3HE  CE 
+ bond    C   CA 
+ bond    C   O  
+ bond    C   O1 
+ bond    C   N  
+ bond    O   C  
+ bond    O1  C  
+ bond    O1  HO 
+ bond    HO  O1 
+PHE F 47
+ bond    HN  N  
+ bond    N   CA 
+ bond    N   H  
+ bond    N   HN 
+ bond    H   N  
+ bond    CA  N  
+ bond    CA  C  
+ bond    CA  HA 
+ bond    CA  CB 
+ bond    HA  CA 
+ bond    CB  CA 
+ bond    CB 1HB 
+ bond    CB 2HB 
+ bond    CB  CG 
+ bond   1HB  CB 
+ bond   2HB  CB 
+ bond    CG  CB 
+ bond    CG  CD1
+ bond    CG  CD2
+ bond    CD1 CG
+ bond    CD1 HD1
+ bond    CD1 CE1
+ bond    CD2 CG
+ bond    CD2 HD2
+ bond    CD2 CE2
+ bond    HD1 CD1
+ bond    HD2 CD2
+ bond    CE1 CD1
+ bond    CE1 HE1
+ bond    HE1 CE1
+ bond    CE1 CZ 
+ bond    CE2 CD2
+ bond    CE2 HE2
+ bond    HE2 CE2
+ bond    CE2 CZ 
+ bond    CZ  CE1
+ bond    CZ  CE2
+ bond    CZ  HZ 
+ bond    HZ  CZ 
+ bond    C   CA 
+ bond    C   O  
+ bond    C   O1 
+ bond    C   N  
+ bond    O   C  
+ bond    O1  C  
+ bond    O1  HO 
+ bond    HO  O1 
+PRO P 37
+ bond    HN  N  
+ bond    N   CA 
+ bond    N   H  
+ bond    N   HN 
+ bond    N   CD 
+ bond    H   N  
+ bond    CA  N  
+ bond    CA  C  
+ bond    CA  HA 
+ bond    CA  CB 
+ bond    HA  CA 
+ bond    CB  CA 
+ bond    CB 1HB 
+ bond    CB 2HB 
+ bond    CB  CG 
+ bond   1HB  CB 
+ bond   2HB  CB 
+ bond    CG  CB 
+ bond    CG 1HG
+ bond    CG 2HG
+ bond    CG  CD 
+ bond   1HG  CG 
+ bond   2HG  CG 
+ bond    CD  CG
+ bond    CD 1HD 
+ bond    CD 2HD 
+ bond    CD  N  
+ bond   1HD  CD 
+ bond   2HD  CD 
+ bond    C   CA 
+ bond    C   O  
+ bond    C   O1 
+ bond    C   N  
+ bond    O   C  
+ bond    O1  C  
+ bond    O1  HO 
+ bond    HO  O1 
+SER S 27
+ bond    HN  N  
+ bond    N   CA 
+ bond    N   H  
+ bond    N   HN 
+ bond    H   N  
+ bond    CA  N  
+ bond    CA  C  
+ bond    CA  HA 
+ bond    CA  CB 
+ bond    HA  CA 
+ bond    CB  CA 
+ bond    CB 1HB 
+ bond    CB 2HB 
+ bond    CB  OG 
+ bond   1HB  CB 
+ bond   2HB  CB 
+ bond    OG  CB 
+ bond    OG  HG
+ bond    HG  OG 
+ bond    C   CA 
+ bond    C   O  
+ bond    C   O1 
+ bond    C   N  
+ bond    O   C  
+ bond    O1  C  
+ bond    O1  HO 
+ bond    HO  O1 
+THR T 34
+ bond    HN  N  
+ bond    N   CA 
+ bond    N   H  
+ bond    N   HN 
+ bond    H   N  
+ bond    CA  N  
+ bond    CA  C  
+ bond    CA  HA 
+ bond    CA  CB 
+ bond    HA  CA 
+ bond    CB  CA 
+ bond    CB  HB 
+ bond    CB  OG1 
+ bond    CB  CG2 
+ bond    HB  CB 
+ bond    OG1 CB 
+ bond    OG1 HG1 
+ bond    CG2 CB 
+ bond    HG1 OG1 
+ bond    CG2 CB 
+ bond    CG21HG2 
+ bond    CG22HG2 
+ bond    CG23HG2 
+ bond   1HG2 CG2 
+ bond   2HG2 CG2 
+ bond   3HG2 CG2 
+ bond    C   CA 
+ bond    C   O  
+ bond    C   O1 
+ bond    C   N  
+ bond    O   C  
+ bond    O1  C  
+ bond    O1  HO 
+ bond    HO  O1 
+TRP W 57
+ bond    HN  N  
+ bond    N   CA 
+ bond    N   H  
+ bond    N   HN 
+ bond    H   N  
+ bond    CA  N  
+ bond    CA  C  
+ bond    CA  HA 
+ bond    CA  CB 
+ bond    HA  CA 
+ bond    CB  CA 
+ bond    CB 1HB 
+ bond    CB 2HB 
+ bond    CB  CG 
+ bond   1HB  CB 
+ bond   2HB  CB 
+ bond    CG  CB 
+ bond    CG  CD1 
+ bond    CG  CD2 
+ bond    CD1 CG 
+ bond    CD1 HD1 
+ bond    CD1 NE1 
+ bond    HD1 CD1 
+ bond    CD2 CG 
+ bond    CD2 CE2 
+ bond    CD2 CE3 
+ bond    NE1 CD1 
+ bond    NE1 HE1 
+ bond    NE1 CE2 
+ bond    HE1 NE1 
+ bond    CE2 NE1 
+ bond    CE2 CD2 
+ bond    CE2 CZ2 
+ bond    CE3 CD2 
+ bond    CE3 HE3 
+ bond    CE3 CZ3 
+ bond    CZ2 CE2 
+ bond    CZ2 HZ2 
+ bond    CZ2 CH2 
+ bond    CZ3 CE3 
+ bond    CZ3 HZ3 
+ bond    CZ3 CH2 
+ bond    HE3 CE3 
+ bond    HZ2 CZ2 
+ bond    HZ3 CZ3 
+ bond    CH2 CZ2 
+ bond    CH2 CZ3 
+ bond    CH2 HH2 
+ bond    HH2 CH2 
+ bond    C   CA 
+ bond    C   O  
+ bond    C   O1 
+ bond    C   N  
+ bond    O   C  
+ bond    O1  C  
+ bond    O1  HO 
+ bond    HO  O1 
+TYR Y 49
+ bond    HN  N  
+ bond    N   CA 
+ bond    N   H  
+ bond    N   HN 
+ bond    H   N  
+ bond    CA  N  
+ bond    CA  C  
+ bond    CA  HA 
+ bond    CA  CB 
+ bond    HA  CA 
+ bond    CB  CA 
+ bond    CB 1HB 
+ bond    CB 2HB 
+ bond    CB  CG 
+ bond   1HB  CB 
+ bond   2HB  CB 
+ bond    CG  CB 
+ bond    CG  CD1 
+ bond    CG  CD2 
+ bond    CD1 CG 
+ bond    CD1 HD1 
+ bond    CD1 CE1 
+ bond    CD2 CG 
+ bond    CD2 HD2 
+ bond    CD2 CE2 
+ bond    HD1 CD1 
+ bond    HD2 CD2 
+ bond    CE1 CD1 
+ bond    CE1 HE1 
+ bond    CE1 CZ 
+ bond    CE2 CD2 
+ bond    CE2 HE2 
+ bond    CE2 CZ 
+ bond    HE1 CE1 
+ bond    HE2 CE2 
+ bond    CZ  CE1 
+ bond    CZ  CE2 
+ bond    CZ  OH 
+ bond    OH  CZ 
+ bond    OH  HH 
+ bond    HH  OH 
+ bond    C   CA 
+ bond    C   O  
+ bond    C   O1 
+ bond    C   N  
+ bond    O   C  
+ bond    O1  C  
+ bond    O1  HO 
+ bond    HO  O1 
+VAL V 37
+ bond    HN  N  
+ bond    N   CA 
+ bond    N   H  
+ bond    N   HN 
+ bond    H   N  
+ bond    CA  N  
+ bond    CA  C  
+ bond    CA  HA 
+ bond    CA  CB 
+ bond    HA  CA 
+ bond    CB  CA 
+ bond    CB  HB 
+ bond    CB  CG1 
+ bond    CB  CG2 
+ bond    HB  CB 
+ bond    CG1 CB 
+ bond    CG11HG1 
+ bond    CG12HG1 
+ bond    CG13HG1 
+ bond    CG2 CB 
+ bond    CG21HG2 
+ bond    CG22HG2 
+ bond    CG23HG2 
+ bond   1HG1 CG1
+ bond   2HG1 CG1
+ bond   3HG1 CG1
+ bond   1HG2 CG2
+ bond   2HG2 CG2
+ bond   3HG2 CG2
+ bond    C   CA 
+ bond    C   O  
+ bond    C   O1 
+ bond    C   N  
+ bond    O   C  
+ bond    O1  C  
+ bond    O1  HO 
+ bond    HO  O1 
+AIB B 31
+ bond    HN  N  
+ bond    N   CA 
+ bond    N   H  
+ bond    N   HN 
+ bond    H   N  
+ bond    CA  N  
+ bond    CA  C  
+ bond    CA  CB1 
+ bond    CA  CB2 
+ bond    CB1 CA 
+ bond    CB2 CA 
+ bond    CB11HB1 
+ bond    CB12HB1 
+ bond    CB13HB1 
+ bond   1HB1 CB1 
+ bond   2HB1 CB1 
+ bond   3HB1 CB1 
+ bond    CB21HB2 
+ bond    CB22HB2 
+ bond    CB23HB2 
+ bond   1HB2 CB2 
+ bond   2HB2 CB2 
+ bond   3HB2 CB2 
+ bond    C   CA 
+ bond    C   O  
+ bond    C   O1 
+ bond    C   N  
+ bond    O   C  
+ bond    O1  C  
+ bond    O1  HO 
+ bond    HO  O1 
+ OH   3
+ bond    O1  C  
+ bond    O1  HO 
+ bond    HO  O1 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

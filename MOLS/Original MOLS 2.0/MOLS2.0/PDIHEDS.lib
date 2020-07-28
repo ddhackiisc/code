@@ -1,0 +1,186 @@
+ALA A 2 
+         N   CA  HA  HO 
+         CA  C   O   HO 
+ARG R 6 
+         N   CA  HA  HO 
+         CA  C   O   HO 
+         CA  CB 1HB 2HH2
+         CB  CG 1HG 2HH2
+         CG  CD 1HD 2HH2
+         CD  NE  HE 2HH2
+ASN N 4 
+         N   CA  HA  HO 
+         CA  C   O   HO 
+         CA  CB 1HB 2HD2
+         CB  CG  OD12HD2
+ASP D 4 
+         N   CA  HA  HO 
+         CA  C   O   HO 
+         CA  CB 1HB  HD2
+         CB  CG  OD1 HD2
+CYS C 3 
+         N   CA  HA  HO 
+         CA  C   O   HO 
+         CA  CB 1HB 3HG
+GLN Q 5 
+         N   CA  HA  HO 
+         CA  C   O   HO 
+         CA  CB 1HB 1HE2
+         CB  CG 1HG 1HE2
+         CG  CD  OE11HE2
+         CD  NE22HE21HE2
+GLU E 5 
+         N   CA  HA  HO 
+         CA  C   O   HO 
+         CA  CB 1HB  HE2
+         CB  CG 1HG  HE2
+         CG  CD  OE1 HE2
+         CG  CD  OE2 HE2
+GLY G 2 
+         N   CA 1HA  HO 
+         CA  C   O   HO 
+HIS H 4 
+         N   CA  HA  HO 
+         CA  C   O   HO 
+         CA  CB 1HB  HE2
+         CB  CG  ND1 HE2
+ILE I 4 
+         N   CA  HA  HO 
+         CA  C   O   HO 
+         CA  CB  HB 2HG2
+         CB  CG11HG12HG2
+LEU L 4 
+         N   CA  HA  HO 
+         CA  C   O   HO 
+         CA  CB 1HB 2HD2
+         CB  CG  HG 2HD2
+LYS K 6 
+         N   CA  HA  HO 
+         CA  C   O   HO 
+         CA  CB 1HB 1HZ 
+         CB  CG 1HG 1HZ 
+         CG  CD 1HD 1HZ 
+         CD  CE 1HE 1HZ 
+         CE  NZ 2HZ 1HZ 
+MET M 5 
+         N   CA  HA  HO 
+         CA  C   O   HO 
+         CA  CB 1HB 2HE  
+         CB  CG 1HG 2HE  
+         CG  SD  CE 2HE  
+         SD  CE  HE12HE  
+PHE F 4 
+         N   CA  HA  HO 
+         CA  C   O   HO 
+         CA  CB 1HB  HZ  
+         CB  CG  CD1 HZ  
+PRO P 1 
+         CA  C   O   HO 
+SER S 3 
+         N   CA  HA  HO 
+         CA  C   O   HO 
+         CA  CB 1HB  HG  
+         CB  OG  HG  HG  
+THR T 3 
+         N   CA  HA  HO 
+         CA  C   O   HO 
+         CA  CB  HB 3HG2  
+         CB  CG21HG23HG2  
+         CB  OG1 HG1 HG1  
+TRP W 4 
+         N   CA  HA  HO 
+         CA  C   O   HO 
+         CA  CB 1HB  HH2  
+         CB  CG  CD1 HH2  
+TYR Y 4 
+         N   CA  HA  HO 
+         CA  C   O   HO 
+         CA  CB 1HB  HH   
+         CB  CG  CD1 HH   
+         CZ  OH  HH  HH   
+VAL V 3 
+         N   CA  HA  HO 
+         CA  C   O   HO 
+         CA  CB  HB 2HG2   
+         CB  CG11HG13HG1  
+         CB  CG23HG23HG2  
+AIB B 2 
+         N   CA  CB1 HO 
+         CA  C   O   HO 
+         CA  CB12HB11HB1  
+         CA  CB22HB21HB2  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

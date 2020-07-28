@@ -1,0 +1,17 @@
+#!/bin/sh
+
+sh bab_ene.sh
+#cat ene1.txt
+#rm ene1.txt
+
+#mv energy.txt out.ene
+#grep "Tot_Energy" energy.txt
+
+rm *_inorg.smi*                                               #Deleting the unwanted files.
+
+#rm out.0000.ffa
+#rm out.0000.mol2
+#rm out.0000.pdb
+
+rm error.log
+

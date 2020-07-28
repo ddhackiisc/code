@@ -1,0 +1,8 @@
+
+#adding hydrogens to the flexible residue
+
+chmod 777 reduce
+
+./reduce -DB red_dict.txt -Quiet flexres>flexres_h.pdb
+
+grep "ATOM" flexres_h.pdb > hflexres.pdb

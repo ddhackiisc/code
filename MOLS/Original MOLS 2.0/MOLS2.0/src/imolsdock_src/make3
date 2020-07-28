@@ -1,0 +1,2 @@
+ifort -c smdrive.f ppdbgen.f creducer.f npamppar.f pamppar.f pvarinit.f smpdbgen.f smvarinit.f findflex.f recflex.f famppar.f mols.f score.f rotator.f flexall.f pconformation.f conformation.f pminimiz.f minimiz.f sminimiz.f -warn noalign
+ifort -o imolsdock smdrive.o ppdbgen.o creducer.o npamppar.o pamppar.o pvarinit.o smpdbgen.o smvarinit.o findflex.o recflex.o famppar.o mols.o score.o rotator.o flexall.o pconformation.o conformation.o pminimiz.o minimiz.o sminimiz.o

@@ -1,0 +1,43 @@
+
+
+          #########################################################
+          #                                                       #
+          #                      MOLSDOCK                         #
+          #                                                       #
+          #          CAS in Crystallography and Biophysics,       #
+          #    University of Madras, Chennai - 600 025, INDIA     #
+          #                                                       #
+          #########################################################
+
+
+                         Job started on 06-Apr-17
+
+                               at 21:24:51
+
+
+     ***********GENERATING INITIAL COORDINATES*********
+
+ The MOL file is  :
+ /home/sam/Jmolsdock1.0_source/MOLS2.0/ligands/ligand_1tnh.mol                  
+                                                  
+ No.of rotatable bonds:           2
+ No. of atoms         :          17
+
+*******GENERATING MOLS OPTIMAL & MINIMIZED STRUCTURES**
+
+ generated MOLS optimal Structure NO :            1  -27.06270    
+ generated minimized Structure NO :            1  -27.25003    
+ generated MOLS optimal Structure NO :            2  -32.32459    
+ generated minimized Structure NO :            2  -32.55568    
+ generated MOLS optimal Structure NO :            3  -21.85770    
+ generated minimized Structure NO :            3  -22.07911    
+ generated MOLS optimal Structure NO :            4  -26.09595    
+ generated minimized Structure NO :            4  -26.21840    
+ generated MOLS optimal Structure NO :            5  -29.56939    
+ generated minimized Structure NO :            5  -29.73668    
+
+                         Job ended on 06-Apr-17
+
+                               at 21:31:13
+
+ cpu time = :    2.254000    

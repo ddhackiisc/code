@@ -1,0 +1,30 @@
+Details of files
+
+Rigid Docking
+
+1. pfile - receptor protein file
+2. pfile1.pdb - This is a copy of 'pfile'.
+3. pfile_mod.pdb - File with 'ATOM' co-ordinates of pfile
+4. pfile_orig.pdb - copy of pfile
+
+Flexible Docking
+
+1. pfile - receptor protein file - used only for initial parameterisation.
+2. pfile1.pdb - receptor protein file with flexible residues. Therefore,used for PLP calculations.
+3. pfile0.pdb is a dummy file created for swapping purpose.
+4. flexres - file that has co-ordinates of residues(selected for flexibility in protein)extracted from the original protein file(pfile)
+5. flexres_h - flexres file + missing hydrogens [after ./reduce] 
+6. hflexres - flexres_h - extra information of 'reduce' tool
+7. SCDIHEDS.lib - Library specifying side chain dihedral angle atoms of all amino acids
+8. prot.pdb - atom_name,residue_name,chain_id,x,y,z of protein residues around the grid box.
+9. pscore.txt - atom_name,residue_name, chain_id,x,y,z of the selected binding site residue. 
+10.sortres - file with the partner residues' id(sorted in ascending order)
+11.partners - file with partner residues (in pdb format)
+
+
+#PROTEIN SIDE-CHAIN FLUCTUATION
+1.To alter fluctuation limit of protein side chains, make changes in fminimiz.f
+2.protein side-chain step size could be varied by changing in user.inp
+
+#Deletions
+1. 'script3' and 'script6' replaced with FORTRAN code in smmols.f

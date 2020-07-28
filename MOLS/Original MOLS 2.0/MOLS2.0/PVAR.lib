@@ -1,0 +1,186 @@
+ALA A 2 
+         C   N   CA  C    phi    0.00   0.00   0.00
+         N   CA  C   N    psi    0.00   0.00   0.00
+ARG R 6 
+         C   N   CA  C    phi    0.00   0.00   0.00
+         N   CA  C   N    psi    0.00   0.00   0.00
+         N   CA  CB  CG   chi1   1.35   1.00   3.00
+         CA  CB  CG  CD   chi2   1.35   1.00   3.00
+         CB  CG  CD  NE   chi3   1.35   1.00   3.00
+         CG  CD  NE  CZ   chi4   0.00   0.00   0.00
+ASN N 4 
+         C   N   CA  C    phi    0.00   0.00   0.00
+         N   CA  C   N    psi    0.00   0.00   0.00
+         N   CA  CB  CG   chi1   1.35   1.00   3.00
+         CA  CB  CG  OD1  chi2   0.00   0.00   0.00
+ASP D 4 
+         C   N   CA  C    phi    0.00   0.00   0.00
+         N   CA  C   N    psi    0.00   0.00   0.00
+         N   CA  CB  CG   chi1   1.35   1.00   3.00
+         CA  CB  CG  OD1  chi2   0.00   0.00   0.00
+CYS C 3 
+         C   N   CA  C    phi    0.00   0.00   0.00
+         N   CA  C   N    psi    0.00   0.00   0.00
+         N   CA  CB  SG   chi1   1.35   1.00   3.00
+GLN Q 5 
+         C   N   CA  C    phi    0.00   0.00   0.00
+         N   CA  C   N    psi    0.00   0.00   0.00
+         N   CA  CB  CG   chi1   1.35   1.00   3.00
+         CA  CB  CG  CD   chi2   1.35   1.00   3.00
+         CB  CG  CD  OE1  chi3   0.00   0.00   0.00
+         CG  CD  NE2 HE2  chi4   0.00   0.00   0.00
+GLU E 5 
+         C   N   CA  C    phi    0.00   0.00   0.00
+         N   CA  C   N    psi    0.00   0.00   0.00
+         N   CA  CB  CG   chi1   1.35   1.00   3.00
+         CA  CB  CG  CD   chi2   1.35   1.00   3.00
+         CB  CG  CD  OE1  chi3   0.00   0.00   0.00
+         CG  CD  OE2 HE2  chi4   0.00   0.00   0.00
+GLY G 2 
+         C   N   CA  C    phi    0.00   0.00   0.00
+         N   CA  C   N    psi    0.00   0.00   0.00
+HIS H 4 
+         C   N   CA  C    phi    0.00   0.00   0.00
+         N   CA  C   N    psi    0.00   0.00   0.00
+         N   CA  CB  CG   chi1   1.35   1.00   3.00
+         CA  CB  CG  ND1  chi2   0.00   0.00   0.00
+ILE I 4 
+         C   N   CA  C    phi    0.00   0.00   0.00
+         N   CA  C   N    psi    0.00   0.00   0.00
+         N   CA  CB  CG1  chi1   1.35   1.00   3.00
+         CA  CB  CG1 CD1  chi2   1.35   1.00   3.00
+LEU L 4 
+         C   N   CA  C    phi    0.00   0.00   0.00
+         N   CA  C   N    psi    0.00   0.00   0.00
+         N   CA  CB  CG   chi1   1.35   1.00   3.00
+         CA  CB  CG  CD1  chi2   1.35   1.00   3.00
+LYS K 6 
+         C   N   CA  C    phi    0.00   0.00   0.00
+         N   CA  C   N    psi    0.00   0.00   0.00
+         N   CA  CB  CG   chi1   1.35   1.00   3.00
+         CA  CB  CG  CD   chi2   1.35   1.00   3.00
+         CB  CG  CD  CE   chi3   1.35   1.00   3.00
+         CG  CD  CE  NZ   chi4   1.35   1.00   3.00
+         CD  CE  NZ  HZ   chi5   0.90   1.00   3.00
+MET M 5 
+         C   N   CA  C    phi    0.00   0.00   0.00
+         N   CA  C   N    psi    0.00   0.00   0.00
+         N   CA  CB  CG   chi1   1.35   1.00   3.00
+         CA  CB  CG  SD   chi2   1.35   1.00   3.00
+         CB  CG  SD  CE   chi3   1.00   1.00   3.00
+         CG  SD  CE  HE   chi4   1.00   1.00   3.00
+PHE F 4 
+         C   N   CA  C    phi    0.00   0.00   0.00
+         N   CA  C   N    psi    0.00   0.00   0.00
+         N   CA  CB  CG   chi1   1.35   1.00   3.00
+         CA  CB  CG  CD1  chi2   0.00   0.00   0.00
+PRO P 1 
+         C   N   CA  C    phi    0.00   0.00   0.00
+SER S 3 
+         C   N   CA  C    phi    0.00   0.00   0.00
+         N   CA  C   N    psi    0.00   0.00   0.00
+         N   CA  CB  OG   chi1   1.35   1.00   3.00
+         CA  CB  OG  HG   chi2   0.30   1.00   3.00
+THR T 3 
+         C   N   CA  C    phi    0.00   0.00   0.00
+         N   CA  C   N    psi    0.00   0.00   0.00
+         N   CA  CB  OG1  chi1   1.35   1.00   3.00
+         CA  CB  OG1 HG1  chi2   0.30   1.00   3.00
+         CA  CB  CG2 HG2  chi3   1.35   1.00   3.00
+TRP W 4 
+         C   N   CA  C    phi    0.00   0.00   0.00
+         N   CA  C   N    psi    0.00   0.00   0.00
+         N   CA  CB  CG   chi1   1.35   1.00   3.00
+         CA  CB  CG  CD1  chi2   0.00   0.00   0.00
+TYR Y 4 
+         C   N   CA  C    phi    0.00   0.00   0.00
+         N   CA  C   N    psi    0.00   0.00   0.00
+         N   CA  CB  CG   chi1   1.35   1.00   3.00
+         CA  CB  CG  CD1  chi2   0.00   0.00   0.00
+         CE1 CZ  OH  HH   chi3   1.75  -1.00   2.00
+VAL V 3 
+         C   N   CA  C    phi    0.00   0.00   0.00
+         N   CA  C   N    psi    0.00   0.00   0.00
+         N   CA  CB  CG1  chi1   1.35   1.00   3.00
+         CA  CB  CG1 HG1  chi2   1.35   1.00   3.00
+         CA  CB  CG2 HG2  chi3   1.35   1.00   3.00
+AIB B 2 
+         C   N   CA  C    phi    0.00   0.00   0.00
+         N   CA  C   N    psi    0.00   0.00   0.00
+         N   CA  CB11HB1  chi1   1.35   1.00   3.00
+         N   CA  CB22HB1  chi2   1.35   1.00   3.00
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

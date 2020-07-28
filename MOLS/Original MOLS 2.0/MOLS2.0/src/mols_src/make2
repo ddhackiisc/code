@@ -1,0 +1,3 @@
+ifort -c drive.f pdbgen.f amppar.f ecppar.f varinit.f conformation.f mols.f minimiz.f cluster.f mclust.f
+ifort -o lmols drive.o pdbgen.o amppar.o ecppar.o varinit.o conformation.o mols.o minimiz.o cluster.o mclust.o
+

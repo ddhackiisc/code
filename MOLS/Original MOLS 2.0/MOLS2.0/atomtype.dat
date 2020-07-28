@@ -1,0 +1,38 @@
+1    C.ar             NP
+2    C.1              NP
+3    C.cat            D 
+4    N.am             D 
+5    N.2.o            D 
+6    N.2.o2           D 
+7    N.ar             A 
+8    N.1              A 
+9    N.4              D 
+10   O.2              A 
+11   O.co2            DA
+12   S.3.h            NP 
+13   S.2              D 
+14   S.o              D 
+15   S.o2             D 
+16   H                X 
+17   H.hb             DH
+18   Si               X 
+19   C.3              NP	
+20   C.2              NP
+21   N.3              D
+22   N.pl3            D
+23   N.2              A
+24   O.3              A
+25   P.3              D
+26   F                D
+27   Cl               NP
+28   Br               NP
+29   I                NP
+30   O.w              DA
+31   M+               M
+	
+##################################################
+#                                                #
+# From line 1-112   its from file ATOM_DEF_XLOGP #
+# From line 113-146 its from file ATOM_DEF_XTOOL #
+#                                                #
+##################################################
