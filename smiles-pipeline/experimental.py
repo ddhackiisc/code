@@ -11,8 +11,9 @@ CCOC(=O)C(O)(C1=CC=C(Cl)C=C1)C2=CC=C(Cl)C=C2
 from rdkit import Chem, DataStructs
 from rdkit.Chem import Draw, Descriptors, AllChem
 import numpy as np
+import pandas as pd
 
-"""Useful commands"""  
+"""Useful commands
 mol = Chem.MolFromSmiles('CCCO')
 smiles = Chem.MolToSmiles(mol)
 img = Draw.MolToImage(mol)
@@ -42,3 +43,6 @@ DataStructs.TanimotoSimilarity(glyanalyse,cyanalyse)
 
 #apparently pickling molecules is much faster than 
 #reparsing SMILES strings
+"""
+data = pd.read_csv('data/nr-ar.smiles', sep='\t',names=['SMILES','Identifier','Activity'])
+#df[df['Activity']==1]
