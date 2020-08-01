@@ -17,4 +17,6 @@ DDT2-14 - Liver Injury (Main problem)
  
 smiles-pipeline contains code for predicting various outputs from smiles data, which will be useful for DDT2-04 and DDT2-14
 
+Using the nr-ar.smiles dataset, we can get an F1 score of 0.4 on androgen receptivity using morgan fingerprints
+
 
