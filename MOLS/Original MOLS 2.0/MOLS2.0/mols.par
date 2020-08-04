@@ -1,9 +1,0 @@
-	parameter (maxatm = 600, maxpar = 150, maxord = 150, 
-     $		   maxhb = 50000, maxstr = 2000,  maxres = 40 ,maxi=10000,
-     &             mnatp = 10000)
-
-c	common /par/ natom, ntor, nhb, ns, lres
-c	common /atm/ atmno(maxatm),atname(maxatm),rename(maxatm),resno(maxatm)
-c	common /var/ ivat(maxres*8,4),vty(maxres*8),ivres(maxres*8)
-c	character atname*4,rename*4
-

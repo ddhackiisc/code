@@ -1,8 +1,0 @@
-rm flexres
-rm flexxres
-rm Rlines.txt
-rm lines.txt
-rm hflexres.pdb
-rm dihed.txt
-rm hflexres_new.pdb
-rm flines.txt

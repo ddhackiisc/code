@@ -1,9 +1,0 @@
-#filen=~/sam_dock/pack_molsdock/receptor/rec_1tnh.pdb
-fname=resid
-filen=rec.pdb
-
-   for x in `cat $fname`
-           do
-            awk '$6'==$x $filen>flexxres
-           done
-
