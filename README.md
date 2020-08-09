@@ -22,6 +22,12 @@ The sequence identity of the COVID19 protease and that of SARS-CoV is high, henc
 The challenge is to either build GAN’S for bioactive peptide generation from scratch using python based deep learning frameworks or customize existing GAN implementations developed for new molecule generation based on SMILES . Success criterion is a python pipeline that utilizes GAN’s to generate potential bioactive peptides < 2000 kDa.
  
 ### DDT2-12 - Improve MOLS algorithm (Main problem)
+
+To do :  Parallelize the code of imolsdock program to improve its computational time. We can also try to come up with new scoring functions to improve its efficiency(I am not sure how feasible this will be because they have tried out various scoring functions and decided upon the current one).  
+
+The source codes for the programs are in FORTRAN language. The code to be parallelized are : smols subroutine in smmols.f and sminimize subroutine in smminimiz.f. They have given inconsistent instructions on parallelization in two places -  one says just parallelize and other says parallelize for CUDA enabled GPUs. Not sure which one. If anyone is interested, smdrive.f has the main program.
+
+The next part is to dock(flexible receptor docking) a library of fda approved drugs against main protease.
  
 ### DDT2-14 - Liver Injury (Main problem)
 
