@@ -109,6 +109,11 @@ GNB
 Train accuracy:  0.8306968790081232
 Test accuracy:  0.791025641025641
 F1 score:  0.12834224598930483
+
+With balanced Logisitic Regression
+Train accuracy:  0.9844662961379507
+Test accuracy:  0.9508547008547008
+F1 score:  0.41624365482233505
 """
 
 
