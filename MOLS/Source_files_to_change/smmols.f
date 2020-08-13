@@ -7,7 +7,7 @@ c       program mols
         common /ligcrdb/ylig(maxatm,8)
         common /pepcrda/xpep(maxatm,8)
         common /pepcrdb/ypep(maxatm,8)
-        common /energy/e_final(maxord,maxord) 
+        common /energy/e_final(maxord,maxord)
         common /mean/avrg1(maxpar,maxord)
         common /vectors/iv(maxpar,4)
         common /par/ natom, ntor, nhb, ns, lres
@@ -21,7 +21,7 @@ c       program mols
         common /sscc/ ssc(maxatm,maxpar,5),nsrot(maxpar),
      &  nschi(maxpar),mn(maxpar)
 	common /pdbat/atom(maxatm),ele(maxatm)
-	common /tor/ u0(maxpar),sn(maxpar),tn(maxpar),phi(maxpar)       
+	common /tor/ u0(maxpar),sn(maxpar),tn(maxpar),phi(maxpar)
         common /pctl/ifff,ioptt
         common /rctl/iscopt
         common /fnam/ if1,pf1,pf2,pf3,pf4,pf5,of1,of2,of3,of4,
@@ -29,22 +29,22 @@ c       program mols
 	common /samfnam/sf0,sf1,sf2
 	common /getrot/inrot,irotb(maxi,2),el,ilsrot(maxi,maxi),
      &  iatrot(maxi),rx(100,3),ire(maxi,maxi),ind(maxi,maxi),big,
-     &  frotb(maxi,2)   
+     &  frotb(maxi,2)
         common /left/ le(maxi,maxi),innd(maxi),ielenum(maxi),
      &  bonum(maxi)
 
 	common /cen/bx,by,bz
         common /recep/np,nres
-        common /emols/ligene(maxord),plpene(maxord),proene(maxord) 
-        common /comment/icomment 
+        common /emols/ligene(maxord),plpene(maxord),proene(maxord)
+        common /comment/icomment
         common /optmo/opmophi(maxpar,maxpar)
         common /scang/frange,rang
 	common /native/nat,pepfile
         character*128 if1,pf1,pf2,pf3,pf4,pf5,pf6,of1,of2,of3,of4,
      &  of0,of5,of6,sf0,sf1,sf2
-      
 
-         
+
+
         dimension angl(maxpar,maxord),angle(maxpar,maxord),jseed(5000),
      &  ang(maxpar,maxord)
 	character seq*(maxres),fseq(maxatm)*1
@@ -53,7 +53,7 @@ c       program mols
         real eflex,en_flex(maxord,maxord),enplp(maxord,maxord),
      &  en_final(maxord,maxord),een_final
         real rang
-    
+
 778     format(i4,2x,f9.3,2x,f9.3,2x,f9.3,2x,f9.3)
 788	format(i3,1x,i3,1x,f8.2,1x,f8.2,1x,f8.2,1x,f8.2,1x,f8.2)
 789	format(a9)
@@ -68,7 +68,7 @@ cc	write(31,*) 'Enter the no. of parameters'
 cc	read *, nn
 	nn = ntor
 	npar = ntor + 6  + np !np - protein SC torsion angles
-        if(icomment.eq.1) print *,'npar-smmols',npar        
+        if(icomment.eq.1) print *,'npar-smmols',npar
 	if(icomment.eq.1)print *,'par-peptide',ntor,'par-protein',np,
      & 'total',npar
 	if(npar.gt.200)then
@@ -105,22 +105,24 @@ c------------------------------------------------------------------------
         if(ilopt.eq.1)then
         call pprecal
         else
-	call precal
+        call precal
         endif
 
         if(ilopt.eq.1)then
         call panggen(ang,fseq,npar,iopt,aii)
         else
-	call anggen(ang,fseq,npar,iopt,aii)
+        call anggen(ang,fseq,npar,iopt,aii)
         endif
 
 	if(iopt.eq.3) call pscinp(fseq)
         if(ilopt.eq.2)then
+        !$omp simd
         do i=1,natom
           do j=1,8
              ylig(i,j)=xlig(i,j)
-          enddo          
-	enddo   
+          enddo
+        enddo
+        !$omp end simd
         endif
 c-------sam added for pmols.f--------------------------
        if(ilopt.eq.1)then
@@ -132,12 +134,13 @@ c-------sam added for pmols.f--------------------------
        enddo
        endif
 c-----------------------------------------------------
+        !$omp simd
         do i=1,npar
-	  do j = 1,mm
+        do j = 1,mm
           angl(i,j) =ang(i,j)
-	  enddo
         enddo
-
+        enddo
+        !$omp end simd
 c************************************************************
 	call rand1(jseed)
          nt=1
@@ -175,28 +178,28 @@ c         ************ Main MOLS ***************
             p(l1,l2,3)=0.0
          enddo
          enddo
-        
+
         do i=1,nres
         mn(i)=1
         enddo
-    
+
            do i=1,mm
            do j=1,mm
 	     k = 1
-	
+
             if(ilopt.eq.1)then
             call psubpar(i,j,k,iopt,ifopt,fseq,aii,phi,npar)
             else
-	    call subpar(i,j,k,iopt,ifopt,fseq,aii,phi,npar)
+            call subpar(i,j,k,iopt,ifopt,fseq,aii,phi,npar)
             endif
 
             if(ilopt.eq.1)then
             call pmolgen(i,j,phi,1,ifopt,eflex)
             else
-	    call molgen(i,j,phi,1,ifopt,eflex)
+            call molgen(i,j,phi,1,ifopt,eflex)
             endif
 c---------------------------------------------------------------------
-c---------------------------------------------------------------------              
+c---------------------------------------------------------------------
          if(ilopt.eq.1)then
           if(ifff.eq.1)then
            en_final(i,j)=pampene(i,j)
@@ -205,14 +208,14 @@ c---------------------------------------------------------------------
           endif
          else if(ilopt.eq.2)then
           if(ifff.eq.1)then
-           rmmff=rmmffene(i,j)     
+           rmmff=rmmffene(i,j)
            en_final(i,j)=rmmff
           else if(ifff.eq.2)then
            rgaff=rgaffene(i,j)
            en_final(i,j)=rgaff
           endif
          endif
-        
+
         if(ilopt.eq.1)then
         call peplp(plpe,hb,steric,1)
         enplp(i,j)=plpe
@@ -229,8 +232,8 @@ c----------------------------------------------------------------------
         print *,'inter-ene',enplp(i,j)
         print *,'intra-protein',en_flex(i,j)
         endif
-        
-        
+
+
         e_final(i,j) = enplp(i,j)+ en_final(i,j)+en_flex(i,j)!energy along with plp
         if(icomment.eq.1) print *,'total',e_final(i,j)
 	if(nat.eq.1)then
@@ -241,14 +244,14 @@ c----------------------------------------------------------------------
 	stop
 	endif
 c	print *,'total',e_final(i,j)
-c	if(icomment.eq.1)stop        
+c	if(icomment.eq.1)stop
 c       stop
 c	pause
 c----------------------------------------------------------------------
 
            enddo
-          enddo          
-       
+          enddo
+
 !-------------------------------------------
           if(ilopt.eq.1)then
           call paverage(npar)
@@ -262,27 +265,27 @@ c----------------------------------------------------------------------
             call psort_and_set_rank(i)
           enddo
 
-          else 
+          else
 
           do i=1,npar
             call sort_and_set_rank(i)
           enddo
 
-          endif         
+          endif
 !--------------------------------------------
           if(ilopt.eq.1)then
           do i=1,npar
            call prank_sort(i,nt)
           enddo
-          else               
-          do i=1,npar 
+          else
+          do i=1,npar
            call rank_sort(i,nt)
           enddo
           endif
 !--------------------------------------------
 	write(82,789)'LAST MOLS'
 c         ************ LAST MOLS *************
-	do m1=1,15
+        do m1=1,15
           m2 = 2
 	  kk = 1
 
@@ -296,9 +299,9 @@ c         ************ LAST MOLS *************
           call pmolgen(kk,m1,phi,1,ifopt,eflex)
           else
 	  call molgen(kk,m1,phi,1,ifopt,eflex)
-          endif 
-        
-	  
+          endif
+
+
 cs------PHI of all structures of best 15------------
         do ik4=1,npar
         opmophi(m1,ik4)=phi(ik4)
@@ -311,12 +314,12 @@ cs--------------------------------------------------
           else
            en_final(m1,m1)=pecpene(m1,m1)
           endif
-        else if(ilopt.eq.2)then 
+        else if(ilopt.eq.2)then
           if(ifff.eq.1)then
             rmmff=rmmffene(m1,m1)
             en_final(m1,m1)=rmmff
           else if(ifff.eq.2)then
-            rgaff=rgaffene(m1,m1) 
+            rgaff=rgaffene(m1,m1)
             en_final(m1,m1)=rgaff
           endif
         endif
@@ -328,7 +331,7 @@ cs--------------------------------------------------
         call eplp(plpe,hb,steric,1)
         enplp(m1,m1)=plpe
         endif
-        
+
         en_flex(m1,m1)=eflex
 	write(82,788)m1,m1,hb,steric,plpe,en_final(m1,m1),eflex
 
@@ -343,7 +346,7 @@ cs--------------------------------------------------
         print *,'plp',enplp(m1,m1)
         print *,'intra-pene',en_flex(m1,m1),eflex
         endif
-        
+
         e_final(m1,m1) = enplp(m1,m1)+en_final(m1,m1)
      &  + en_flex(m1,m1)!energy along with plp&flex
 
@@ -361,7 +364,7 @@ c*******End of Flushing ********************
 c-------mols.log------------------------------------------------------
       do iil=1,15
       if(e_final(iil,iil).eq.et)then
-      ir=iil       
+      ir=iil
       endif
       enddo
         write(77,778)ijx,en_final(ir,ir),enplp(ir,ir),en_flex(ir,ir),
@@ -373,7 +376,7 @@ c-------mols.log------------------------------------------------------
 c--------------------------------------------------------------------
 333	enddo
 
-cs------passing optimal parameters of receptor into 'opmo' ---------- 
+cs------passing optimal parameters of receptor into 'opmo' ----------
 cs	if(ifopt.eq.2)then
 cs	do ik3=nn+7,npar
 cs      opmo(ijx,ik3) = opmophi(ir,ik3)
@@ -410,11 +413,11 @@ c         y=ran(iseed)
             ki=ki+1
             angle(j,ki)=angll(j,iy)
             angll(j,iy)=99999.0
-            if(ki.ge.mm)go to 3 
-           endif         
-          enddo         
+            if(ki.ge.mm)go to 3
+           endif
+          enddo
 3       continue
-        enddo 
+        enddo
 
 
         do i=1,npar
@@ -422,9 +425,9 @@ c       write(4,10)(angle(i,j),j=1,mm)
  	write(4,*)(angle(i,j),j=1,mm)
 c10     format(37f6.1)
         enddo
-    
+
         close(unit=4)
-        return 
+        return
         end
 c*********************************************************************
 	subroutine pargen1(angle,npar)
@@ -432,7 +435,7 @@ c*********************************************************************
 c	pargen is for parameter generation
 c	n  -   total number of parameters
 c	m  -   maximum number of values for each parameter
-      
+
 	include 'mols.par'
         common/parameters/e(maxord,maxord,maxpar),p(maxpar,maxord,3)
         common/order/nn,mm
@@ -456,13 +459,13 @@ c	write(31,*)i,'  ',j,'  ',l,'  ',e(i,j,l)
 c20	format(8f6.1)
 c	open (unit=6,file='pargen.out',status='unknown')
 c	 write (6,20) (((e(i,j,l),l=1,npar),j=1,mm),i=1,mm)
-c      close (unit=6)        
+c      close (unit=6)
 
 	return
 	end
 
 c*******************************************************************************************
- 
+
         subroutine molgen(lx,ly,phi,tst,ifopt,e_flex)
 c	program molgen(phi)
         include 'mols.par'
@@ -488,8 +491,8 @@ c       integer le(maxi,maxi),elenum(maxi,maxi)
         real rotang,theta,psi
 
         real cx,cy,cz,bx,by,bz
- 
-        if(nat.eq.1) goto 314 
+
+        if(nat.eq.1) goto 314
 
 	nn=ntor
         do k=1,natom
@@ -537,7 +540,7 @@ c------------------------------------------------------
 c------------------------------------------------------
          do j=1,iatrot(if)
           k=ilsrot(if,j)
-         
+
            xin=x_one(k,1)-x_one(irotb(if,1),1)
            yin=x_one(k,2)-x_one(irotb(if,1),2)
            zin=x_one(k,3)-x_one(irotb(if,1),3)
@@ -546,7 +549,7 @@ c------------------------------------------------------
            x_two(k,1)=xout+x_one(irotb(if,1),1)
            x_two(k,2)=yout+x_one(irotb(if,1),2)
            x_two(k,3)=zout+x_one(irotb(if,1),3)
-        
+
         enddo
 
         do k=1,natom
@@ -564,11 +567,11 @@ C####################################################################
            enddo
         enddo
 
-        
+
         call rotate(bx,by,bz,phi(nn+4),phi(nn+5),phi(nn+6),natom)
 	call translate(bx,by,bz,phi(nn+1),phi(nn+2),phi(nn+3),natom)
-        if(ifopt.eq.2)then 
-        call flexall(lx,ly,phi,e_flex,1) 
+        if(ifopt.eq.2)then
+        call flexall(lx,ly,phi,e_flex,1)
         endif
 
 
@@ -593,8 +596,8 @@ csy      stop
         end
 c***********************************************************************
 c       function ampene(ie,je)
-        function fampene(hx,hy,amberene)        
- 
+        function fampene(hx,hy,amberene)
+
 	include 'mols.par'
         common/procrda/xpro(maxatm,8)
         common/proranges/jstartpro(maxatm,10),jendpro(maxatm,10),
@@ -607,7 +610,7 @@ c       function ampene(ie,je)
         common /comment/icomment
         common /part/ipart,iptor
         common /partners/qatname(maxatm),qx1(maxatm),qx2(maxatm),
-     &  qx3(maxatm),qresname(maxatm),qcid(maxatm),qresnum(maxatm)      
+     &  qx3(maxatm),qresname(maxatm),qcid(maxatm),qresnum(maxatm)
         common /propdb/ihflex,patname(maxatm),px1(maxatm),px2(maxatm),
      &  px3(maxatm),presname(maxatm),pcid(maxatm),presnum(maxatm)
 	common /flex/iponly
@@ -622,7 +625,7 @@ c       function ampene(ie,je)
         character*1 pcid,qcid
         integer qresnum,presnum
         character xx1*3,yy1*3,xx2*1,yy2*1,xx3*4,yy3*4
-c----------------------------------------------------------------------        
+c----------------------------------------------------------------------
 	if(icomment.eq.2)icount=0
 	if(hx.eq.1.and.hy.eq.1)then
 	jq=0
@@ -722,13 +725,13 @@ c-------------------------------------------------------------
         if(resno(i).ne.resno(j))then!added by sam
 	if(qatname(i).eq.' SG '.and.qatname(j).eq.' SG ')goto 212!added by sam
 cs        'SG'added for relaxing disulphide bonds
-cs        if(dis.gt.2.2)then         !added by sam  
+cs        if(dis.gt.2.2)then         !added by sam
 	  if(icomment.eq.2)icount=icount+1
           call force(i,j,dis,enbt,eest)
            ees=ees+eest
            enb=enb+enbt
 cs        print *,'force-enbt',i,j,qatname(i),qatname(j),dis,enb
-cs        endif              !added by sam 
+cs        endif              !added by sam
         endif               !added by sam
 212    enddo
        enddo
@@ -741,7 +744,7 @@ c	print *,'after-force-nb',icount
             j=j1_4pro(i,ij)
           dis = dist(xpro(i,1),xpro(i,2),xpro(i,3),xpro(j,1),
      &    xpro(j,2),xpro(j,3))
-	  
+
           if(dis.lt.0.5) then
               STOP 'Input coordinates are wrong !!'
             endif
@@ -752,10 +755,10 @@ c	    if(resno(i).eq.resno(j))then !calculating 1-4 interactions for each residu
             enb1_4=enb1_4+0.5*enbt
 c	    endif
 c	print *,i,j,dis,'ees1_4',ees1_4,'enb1_4',enb1_4
-        enddo    
-c	print *,'after-force_1-4',icount       
+        enddo
+c	print *,'after-force_1-4',icount
          enddo
-	if(icomment.eq.2)print *,'after-force-nb_1-4',icount        
+	if(icomment.eq.2)print *,'after-force-nb_1-4',icount
         do i=1,nhb
 	if(icomment.eq.2)icount=icount+1
          dis = dist(xpro(iprohb1(i),1),xpro(iprohb1(i),2),
@@ -778,7 +781,7 @@ c	print *,'after-force_1-4',icount
          enb=enb-enbt
         enddo
 	if(icomment.eq.2)print *,'after-nhb',icount
-c       xw3=1.0        
+c       xw3=1.0
 	amberene=(xw3*((enb)+(ees)+(ehb)+(enb1_4)+(ees1_4)))
 c	amberene=(xw3*((enb)+(ees)+(ehb)))
         if(icomment.eq.1)then
@@ -803,7 +806,7 @@ c*******************************************************************
         common/procrda/xpro(maxatm,8)
         common /part/ipart
 cs      real y(maxatm,8)
-        
+
 
 cs        do i=1,ipart
 cs        do j=1,8
@@ -822,20 +825,20 @@ cs        enddo
         eest=332.0*xpro(if,4)*xpro(jf,4)*artwo/4.0
         ef1=aaa*artwelve
         ef2=ccc*arsix
-        enbt=ef1-ef2        
-        return                  
+        enbt=ef1-ef2
+        return
         end
 
 c***********************************************************************
 c       function ecpene(ie,je)
-        function fecpene(rt)                
- 
+        function fecpene(rt)
+
 	include 'mols.par'
 	parameter(mxtyat = 18)
-        common/pcrda/x(maxatm,8) 
+        common/pcrda/x(maxatm,8)
         common/ranges/jstart(maxatm,10),jend(maxatm,10),j1_4(maxatm,12)
 	common /tor/ u0(maxpar),sn(maxpar),tn(maxpar),phi(maxpar)
-        common/energy/e_final(maxord,maxord) 
+        common/energy/e_final(maxord,maxord)
         common /par/ natom, ntor, nhb, ns, lres
         common/hb/ihb1(maxhb),ihb2(maxhb),c(maxhb),d(maxhb)
         common /ecpp/ aij(mxtyat,mxtyat),cij(mxtyat,mxtyat),
@@ -848,7 +851,7 @@ c       function ecpene(ie,je)
         real y(maxatm,8)
 
         fatom=ipart
-        
+
 	cdc=(22.0/(7.0*180))
         ees=0.0
         enb=0.0
@@ -885,17 +888,17 @@ c       function ecpene(ie,je)
               return
             endif
 
-        
+
 	ity = int(y(i,5))
 	jty = int(y(j,5))
         ees = ees + (332.0*y(i,4)*y(j,4))/(dis*2.0)
 	if(ihb(ity,jty).eq.0) then
 	enb = enb + (aij(ity,jty)/(dis**12.0))-(cij(ity,jty)/(dis**6.0))
-        
+
 	else
          ehb=ehb+(ahb(ity,jty)/(dis**12.0))-(chb(ity,jty)/(dis**10.0))
 	endif
-          enddo        
+          enddo
          enddo
          n1_4=ifix(y(i,8))
          do ij=1,n1_4
@@ -912,7 +915,7 @@ c       function ecpene(ie,je)
 	else
        ehb14=ehb14+(ahb(ity,jty)/(dis**12.0))-(chb(ity,jty)/(dis**10.0))
 	endif
-         enddo           
+         enddo
        enddo
 
 	ees = ees + ees14
@@ -929,7 +932,7 @@ c********************************************************************
 
 	include 'mols.par'
         common/parameters/e(maxord,maxord,maxpar),p(maxpar,maxord,3)
-        common/energy/e_final(maxord,maxord) 
+        common/energy/e_final(maxord,maxord)
         common/out/e_out(maxatm),p_out(maxpar,maxatm)
         common/mean/avrg1(maxpar,maxord)
         common/order/nn,mm
@@ -938,9 +941,9 @@ c********************************************************************
 	open (unit=8,file='average.out',status='unknown')
 
 c       en_k_t is boltzmannconst*avogadronumber*temp(=300 degree K)
-c	average is for finding the average 
-c	e_final   -  energy values of the conformation 
-c	cutoff    -  for omitting impossible conformations 
+c	average is for finding the average
+c	e_final   -  energy values of the conformation
+c	cutoff    -  for omitting impossible conformations
 c	avrg1     -  average without cutoff
 c	n  -   total number of parameters = 9
 c	m  -   maximum number of values for each parameter = 37
@@ -949,7 +952,7 @@ c	compute using mols
 
 	do 400 l = 1, npar
 	  do 500 k = 1, mm
-	    avrg1(l,k) = 0.0 
+	    avrg1(l,k) = 0.0
             summ   = 0.0
             summ_mm= 0.0
 	    do 600 j = 1, mm
@@ -960,14 +963,14 @@ c	compute using mols
 600	    continue
 	    avrg1(l,k) = summ/summ_mm
 	write(8,*)l,k,avrg1(l,k)
-	close(unit=8) 
+	close(unit=8)
 500	continue
 400    continue
 
         return
         end
 c*********************************************************************
-      
+
         subroutine sort_and_set_rank(is1)
 
 	include 'mols.par'
@@ -1039,9 +1042,9 @@ c        enddo
 c	close(unit=12)
 
         return
-        end 
+        end
 c********************************************************************
-       
+
         subroutine rank_sort(ir1,nt)
 
 	include 'mols.par'
@@ -1068,7 +1071,7 @@ c	close(unit =13)
           sd=sqrt((sum_x2/nt)-((sum_x/nt)*(sum_x/nt)))
           p(ir1,i,2)=ave
           p(ir1,i,3)=sd
-        enddo       
+        enddo
 c	do j=1,mm
 c	write (14,*) p(ir1,j,1),p(ir1,j,2),p(ir1,j,3)
 c	enddo
@@ -1154,7 +1157,7 @@ c*********************************************************************
      &  of5,of6
 
 css	common /fnam/ if1,pf1,pf2,pf3,pf4,pf5,of1,of2,of3,of4
-cs      common /fnam/ of0,pf2,pf3,pf4,pf5,of6,of1,of2,if1,of5       
+cs      common /fnam/ of0,pf2,pf3,pf4,pf5,of6,of1,of2,if1,of5
         common /dcom/ipatom
         common /recep/np,nres
         common /scang/frange,rang
@@ -1162,7 +1165,7 @@ cs      common /fnam/ of0,pf2,pf3,pf4,pf5,of6,of1,of2,if1,of5
         common /rctl/iscopt
         common /optmo/opmophi(maxpar,maxpar)
         common /energy/e_final(maxord,maxord)
-        
+
 
         character*128 if1,pf1,pf2,pf3,pf4,pf5,pf6,of1,of2,of3,of4,
      &  of0,of5,of6
@@ -1170,7 +1173,7 @@ cs      common /fnam/ of0,pf2,pf3,pf4,pf5,of6,of1,of2,if1,of5
 css	character*128 if1,pf1,pf2,pf3,pf4,pf5,of1,of2,of3,of4,of0
 cs      character*128 of0,pf2,pf3,pf4,pf5,of6,of1,of2,if1,of5
 
-	character fseq(maxatm)*1,prt*80,prt1*80 
+	character fseq(maxatm)*1,prt*80,prt1*80
         integer exresid,cx,cy,npar
         real ex1,ex2,ex3
 
@@ -1186,18 +1189,18 @@ c       print *,(p_out(j,1),j=1,npar)
         i = nou
 
 cs      if(icomment.eq.1)then
-cs      do ik=1,npar        
+cs      do ik=1,npar
 cs      print *,'p_out',i,p_out(ik,i)
 cs      enddo
 cs      endif
         if(icomment.eq.1)write(*,*),'output-ifopt',ifopt
-        if(icomment.eq.1)write(*,*),'rang-output',rang        
+        if(icomment.eq.1)write(*,*),'rang-output',rang
 c        do ii=1,nres
-c        write(*,*)rrid(ii)        
+c        write(*,*)rrid(ii)
 c        enddo
 c        print *,'rid',rid
 cs	i = nou
-cs	if(iopt.eq.3) then  
+cs	if(iopt.eq.3) then
 cs	j = 1
 cs	k = 1
 cs	jh = 1
@@ -1222,10 +1225,10 @@ cs	enddo
 cs	jh = jh + 1
 cs	endif
 cs	k = k + 1
-cs	if(k.le.lres) go to 172	
-cs	endif  
+cs	if(k.le.lres) go to 172
+cs	endif
 c------- write MOLS protein PDB-----------------------------------
-        
+
 c        natp=ipatom
 c        open(unit=11,file='pfile1.pdb',status='old')
 c        open(unit=12,file='pfile_mols.pdb',status='unknown')
@@ -1247,7 +1250,7 @@ c----------------------------------------------------------------
 	do k1=1,nn
 	opmo(ijx,k1) = p_out(k1,i)
         if(icomment.eq.1)print *,'opmo',ijx,k1,opmo(ijx,k1)
-	enddo 
+	enddo
 	emo(ijx) = e_out(i)
 	do k1 = 1,nn
 c	pp(k1) = pp(k1) - 180.0
@@ -1290,7 +1293,7 @@ css      endif
 
         do ik4=nn+7,npar
         opmo(ijx,ik4)=opmophi(ir,ik4)
-        if(icomment.eq.1)print *,'opmo-opmophi',ir,opmo(ijx,ik4)        
+        if(icomment.eq.1)print *,'opmo-opmophi',ir,opmo(ijx,ik4)
         enddo
 	endif
 c----------------------------------------------------------
@@ -1307,7 +1310,7 @@ C       write(24,10) ijx,e_out(i),(pp(j),j=1,nn)
 	do k1 = 1,nn
 	pp(k1) = pp(k1) - 180.0
 	enddo
-        
+
 C**********************
 c       STORING THE TRANS AND ROT PARAM
         ix = 5
@@ -1356,7 +1359,7 @@ cs	endif
 C*******************************************************************
         write(24,*) ijx,e_out(i),(pp(j),j=1,npar)
         write(*,*)'two',ijx,e_out(i),(pp(j),j=1,npar)
-        endif 
+        endif
 
 	et = e_out(i)
         if(ijx.eq.ie) close(unit=24)
@@ -1372,10 +1375,10 @@ css        if(e_final(iil,iil).eq.et)then
 css        ir=iil
 css        endif
 css        enddo
-    
+
 css        do ik4=1,npar
 css        opmo(ijx,ik4)=opmophi(ir,ik4)
-css        if(icomment.eq.1)print *,'opmo-opmophi',ir,opmo(ijx,ik4)        
+css        if(icomment.eq.1)print *,'opmo-opmophi',ir,opmo(ijx,ik4)
 css        enddo
 css        ENDIF
 c-----------------------------------------------------------------------
@@ -1390,13 +1393,13 @@ c***********************************************************************
 	subroutine best(ib,npar)
 	include 'mols.par'
         common/parameters/e(maxord,maxord,maxpar),p(maxpar,maxord,3)
-        common/energy/e_final(maxord,maxord) 
+        common/energy/e_final(maxord,maxord)
         common/order/nn,mm
         common/out/e_out(maxatm),p_out(maxpar,maxatm)
         common /comment/icomment
 
         do i=1,25
-          if(e_final(ib,ib).lt.e_out(i)) then            
+          if(e_final(ib,ib).lt.e_out(i)) then
             do j=25,i+1,-1
               e_out(j)=e_out(j-1)
               do k=1,npar
@@ -1404,10 +1407,10 @@ c***********************************************************************
               enddo
             enddo
             e_out(i)=e_final(ib,ib)
-   
+
 	    do l = 1,npar
 	      p_out(l,i) = p(l,ib,1)
-            if(icomment.eq.1)then 
+            if(icomment.eq.1)then
             print *,'best-p_out',p_out(l,i)
             endif
 	    enddo
@@ -1416,7 +1419,7 @@ c***********************************************************************
          enddo
 10       continue
          ir=ib !sam added
-         
+
          return
          end
 C###############################################################################
@@ -1427,7 +1430,7 @@ c        open(unit=8,file='mseed.out',status='unknown')
 	b=3465
 	c=5421
 	d=5323
-	e=5000 
+	e=5000
 	  nss=0
            do i=1,10000
              r = mod(((a*b)+c),d)
@@ -1439,7 +1442,7 @@ c        open(unit=8,file='mseed.out',status='unknown')
              nss=nss+1
              if(nss.gt.e)go to 2
 c             write(8,*)r
-	jseed(nss) = r	
+	jseed(nss) = r
 1       b = r
 	enddo
 
@@ -1451,8 +1454,8 @@ c*************************************************************************
         common/order/nn,mm
         common /par/ natom, ntor, nhb, ns, lres
 	dimension ang(maxpar,maxord)
-	character fseq(maxatm)*1 
-	
+	character fseq(maxatm)*1
+
 c	open (unit=21,file='angles.inp',status='unknown')
 c	type *,'enter nn (total no. of parameters)'
 c	read *,nn
@@ -1507,7 +1510,7 @@ c        write(21,10)ang(i,j)
 c        write(21,10)((ang(i,j),j=1,mm),i=1,npar)
 c       write(6,10)((ang(i,j),j=1,mm),i=1,npar)
 c	close(unit=21)
-	return 
+	return
 	end
 c*************************************************************************
 	subroutine scinp(fseq)
@@ -1547,8 +1550,8 @@ c	write(31,*)(sc(i,j,k),k=1,nchi(i))
 	close(unit=33)
 	return
 	end
-	
-c************************************************************************	
+
+c************************************************************************
 	subroutine subpar(l1,l2,l3,iopt,ifopt,fseq,aii,phi,npar)
 	include 'mols.par'
         common/parameters/e(maxord,maxord,maxpar),p(maxpar,maxord,3)
@@ -1564,7 +1567,7 @@ c************************************************************************
         common /recep/np,nres
         common/scang/frange,rang
         common/comment/icomment
-	character fseq(maxatm)*1 
+	character fseq(maxatm)*1
 c	dimension sc(1500,50,5),nrot(50),nchi(5)
         dimension x_one(maxatm,3),x_two(maxatm,3)
         dimension phi(maxpar)
@@ -1577,8 +1580,8 @@ cs      IF(ifopt.eq.1)THEN
 	i = 1
 	j = 1
 	k = 1
-161	if(l3.eq.1) then  
-	if(fseq(k).eq.'P') go to 191 
+161	if(l3.eq.1) then
+	if(fseq(k).eq.'P') go to 191
 	phi(i) = e(l1,l2,j)
 	i = i + 1
 	j = j + 1
@@ -1632,7 +1635,7 @@ c	j1 = int((j1/10.0) + 1.0)
 	if(l3.eq.2) phi(i) = p(i,l2,1)
 	enddo
 	endif
-        
+
 
 c***modified to include rotation and translation parameters for ligand docking**************
 c       do i = nn+1, nn+3
@@ -1702,7 +1705,7 @@ c       print *,ix,iy,npar-ix,nn+iy
         iy = iy+1
 c       if(iy.le.6) go to 182
         if(iy.le.6) go to 182
-        endif 
+        endif
 cs      ENDIF
 c       print *,'npar =',npar,'nn =',nn
 c       write(*,*)(phi(ii),ii=1,nn+6)
@@ -1716,7 +1719,7 @@ c*******step size for receptor SC flexibility*by*sam*******
         mp=1
         do i=1,nres
         mchi=nschi(i)
-        mrot=nsrot(i)        
+        mrot=nsrot(i)
         do j=1,mchi
         if(mn(i).gt.mrot)then
         mn(i)=1
@@ -1730,7 +1733,7 @@ c*******step size for receptor SC flexibility*by*sam*******
         endif
         else
 
-        phi(nn+6+mp)=ssc(i,mn(i),j) 
+        phi(nn+6+mp)=ssc(i,mn(i),j)
         if(icomment.eq.1) print *,'phi-rotamer',nn+6+mp,phi(nn+6+mp)
         mp=mp+1
         if(icomment.eq.1)then
@@ -1759,35 +1762,35 @@ c*******step size for receptor SC flexibility*by*sam*******
          if(tt1.eq.0.0)then
           tt2=0.0
          else
- 
+
 c        tt2=(tt1/10.0)*rang
 	 tt2=(tt1/(360.0/mm))*rang
          endif
-     
+
 c--------modulo has been added two times to shuffle '+' and '-' signs----
          if(mod(l2,2).ne.0.0)then
           if(mod(i,2).eq.0.0)then
            phi(i) = -tt2
-          else 
+          else
            phi(i) = tt2
           endif
          else
           if(mod(i,2).eq.0.0)then
              phi(i) = tt2
           else
-           phi(i) = -tt2       
+           phi(i) = -tt2
           endif
          endif
 cs      if(icomment.eq.1) print *,'tt1,phi-flex',i,tt1,phi(i)
         enddo
-        
+
         endif !if(ifopt)
 
         ENDIF !if(isc)
 c********************************************************
 
  	return
-	
+
 	end
 c***********************************************************************
 
@@ -1804,7 +1807,7 @@ c       print *,'START OF LIGATOM'
         cy=0.0
         cz=0.0
 
-c       do i = 1,natl 
+c       do i = 1,natl
 c          write (6,FMT='(f8.3,2x,f8.3,2x,f8.3)')y(i,1),y(i,2),y(i,3)
 c       enddo
 
@@ -1814,7 +1817,7 @@ c       enddo
                 cy = cy + ylig(i,2)
                 cz = cz + ylig(i,3)
 
-        enddo 
+        enddo
         cx1 = cx / natl
         cy1 = cy / natl
         cz1 = cz / natl
@@ -1858,13 +1861,13 @@ c*******USED FOR MOVING CENTROID AGAIN TO ORGIN******
 
 
         do i = 1,natl
-                
+
                 ylig(i,1) = ylig(i,1)+(bx)+tx
                 ylig(i,2) = ylig(i,2)+(by)+ty
                 ylig(i,3) = ylig(i,3)+(bz)+tz
        enddo
 
-       
+
 
 c       print *,'AFTER TRANSLATION'
 c       do i = 1,natl
@@ -1888,7 +1891,7 @@ c       subroutine rotate(rx,ry,rz,natl)
         real w1,w2,qx,qy,qz,tw,tx,ty,tz,tw1,tx1
         real ax,ay,az,sx,sy,sz,s,t
 10      format(a6,2x,i5,a10,i5,4x,3f8.3)
-	
+
 c	print*,'bx=',bx
 c	print*,'by=',by
 c	print*,'bz=',bz
@@ -1911,13 +1914,13 @@ c       print *,'rotrang(radian):',rotrang
         r = 1
         w2 = 0.0
         sx = 0.0
-        sy = 0.0 
+        sy = 0.0
         sz = 0.0
 c       CREATE POINTS ON THE UNIT SPHERE USING SPHERICAL COORD
 
         sx = r*cos(theta1)*sin(psi1)
         sy = r*sin(theta1)*sin(psi1)
-        sz = r*cos(psi1) 
+        sz = r*cos(psi1)
 
 c       MOVE THE SPHERE CENTRE TO THE LIGAND CENTROID
 c       print *,'sphere points',sx,sy,sz
@@ -2045,11 +2048,11 @@ c***********END OF ANGLE/AXIS REPRESENTATION**********
 c************EULER ANGLE ROTATION*********************
 c       print *, 'rotation angles:',rx,ry,rz
 c       a = cos(rx)
-c       b = sin(rx) 
-c       c = cos(ry) 
-c       d = sin(ry) 
-c       e = cos(rz) 
-c       f = sin(rz) 
+c       b = sin(rx)
+c       c = cos(ry)
+c       d = sin(ry)
+c       e = cos(rz)
+c       f = sin(rz)
 
 ccc     Rotation matrix in zxz convention
 
@@ -2060,7 +2063,7 @@ c       rmat(2,1) = -(f*a+c*b*e)
 c       rmat(2,2) = -f*b+c*a*e
 c       rmat(2,3) = e*d
 c       rmat(3,1) = d*b
-c       rmat(3,2) = -d*a 
+c       rmat(3,2) = -d*a
 c       rmat(3,3) = c
 ccc     Transpose
 cc      rmat(1,1) = (e*a)-(c*b*f)
@@ -2136,7 +2139,7 @@ c*************Precalculate the interaction pair***********
         character xatnam*4, xresnam*3,lat*2,pat*2,tatyp*2
         character patnam*4,presnam*3,tpres*3,tatnam*4
         character ltyp*4,ptyp*4
-        
+
 c       if(icomment.eq.1)print *,'precal-natp',natp
         if(icomment.eq.1)print *,'precal-matp',matp
 c       print *,'HB SET'
@@ -2164,7 +2167,7 @@ c       stop
         ihcnt = ik-1
 
 c       print *,'STERIC SET'
-        ik = 1 
+        ik = 1
 c       print *,natp,natom
         do i = 1,natp
         ptyp = pat(i)
@@ -2230,7 +2233,7 @@ c       integer hbp(90000),hbl(90000),sp(90000),sl(90000)
 
 c       print *,'plp-natp',natp
 
-        
+
 
 
         d = 0.0
@@ -2278,7 +2281,7 @@ c       print *,i,px(i,1),px(i,2),px(i,3)
 c       enddo
 
         if(icomment.eq.1)print *,'ihcnt,iscnt',ihcnt,iscnt
-        
+
 cs        if(tst.eq.2)then
 cs        do k=1,natom
 cs        print *,'eplp',ylig(k,1),ylig(k,2),ylig(k,3)
@@ -2292,7 +2295,7 @@ c-----------------------------------------------------------------
      &  ylig(il,3))
         if(d.le.3.4) then
          if(d.le.2.3.and.d.ge.0) then
-         a = 20.0 
+         a = 20.0
          b = 2.3
          c = 46.0
          else
@@ -2400,7 +2403,7 @@ cs      endif
      &  str3*30,res*10,rmscr*35
         character*128 if1,pf1,pf2,pf3,pf4,pf5,pf6,of1,of2,of3,of4,
      &  of0,of5,of6
-        
+
         dimension pp(maxpar)
         character str*80,t*20
         real etot,rdihed,rvdw,reel,xw1,xw2,xw3
@@ -2456,7 +2459,7 @@ cd        endif
 
         str= 'sh gene_script.sh'
         call system(str)
-        
+
         open(unit=113,file="output1",status= "old")
 
 cs      read(113,*)rdihed
@@ -2492,12 +2495,12 @@ c******************************************************************
         common /fnam/ if1,pf1,pf2,pf3,pf4,pf5,of1,of2,of3,of4,
      &  of5,of6
         common /energy/e_final(maxord,maxord)
- 
+
         common /getrot/inrot,irotb(maxi,2),el,ilsrot(maxi,maxi),
      &  iatrot(maxi),rx(100,3),ire(maxi,maxi),ind(maxi,maxi),big
         common /left/ le(maxi,maxi),innd(maxi),ielenum(maxi),
      &  bonum(maxi)
-        
+
         common /gen/ ibno,iat1(maxi),iat2(maxi),isno(maxi)
         common /string/ atsym(maxi),desc(maxi),attyp(maxi),
      &  str1(maxi),str2(maxi),str3,res,n1,n2,n3
@@ -2513,7 +2516,7 @@ c******************************************************************
         dimension pp(maxpar)
         character str*80,t*20
         real etot,rdihed,rvdw,reel,xw1,xw2,xw3
- 
+
 10      format(a80)
 11      format(a25)
 20      format(i3,i3,a8)
@@ -2562,7 +2565,7 @@ cd        endif
 	close(unit=50)
 	str= 'sh ene_script.sh'
 	call system(str)
-	
+
         open(unit=113,file="output1",status= "old")
 
         read(113,*)rdihed
@@ -2589,7 +2592,7 @@ c-----------------------------------------------------------------------
         real x(maxatm,3)
         acdc=((180.0*7.0)/22.0)
         one=1.d0
-!-----------------------------------        
+!-----------------------------------
         x(i1,1)=xx_one(i1,1)
         x(i1,2)=xx_one(i1,2)
         x(i1,3)=xx_one(i1,3)
@@ -2643,6 +2646,6 @@ c-----------------------------------------------------------------------
         stop
       endif
       end
-c------------------------------------------------------------------------- 
+c-------------------------------------------------------------------------
 
 
