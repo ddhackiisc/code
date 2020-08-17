@@ -19,19 +19,22 @@ class Molecule:
         self.logp = logp
         # logger.info("Parsing Molecule {:},contract rings: {:}".format(smile, contract_rings))
         self.atoms = []
-        m = Chem.MolFromSmiles(smile)
+        m = Chem.MolFromSmiles(smile)  # makes a mol object
         # Chem.Kekulize(self.m)
         self.no_of_atoms = m.GetNumAtoms()
-        self.graph = nx.Graph()
+        self.graph = nx.Graph()  # creates an empty graph for the molecule
 
         for i in xrange(self.no_of_atoms):
             atom = m.GetAtomWithIdx(i)
+            # adds a node for each atom and atom features returns [1x5] array
             self.graph.add_node(i, attr_dict={"atom_features": Molecule.atom_features(atom)})
-            for neighbour in atom.GetNeighbors():
+            for neighbour in atom.GetNeighbors():  # iterates through each neighbour of the atom
                 neighbour_idx = neighbour.GetIdx()
+                # returns bond index of the coressponding bond
                 bond = m.GetBondBetweenAtoms(i, neighbour_idx)
+                # adds an edge to the graph and bond features returns [1x6] array with bond info
                 self.graph.add_edge(i, neighbour_idx,
-                                attr_dict={"bond_features": Molecule.bond_features(bond)})
+                                    attr_dict={"bond_features": Molecule.bond_features(bond)})
 
         if contract_rings:
             self.reduce_graph_rings()
@@ -88,7 +91,6 @@ class Molecule:
         self.local_input_vector = np.zeros(
             (self.no_of_atoms, self.no_of_atoms, Molecule.num_of_features()))
 
-
         for idx in xrange(self.no_of_atoms):
             sorted_path = self.directed_graphs[idx, :, :]
 
@@ -112,8 +114,7 @@ class Molecule:
                     index = 0
                     no_of_incoming_edges[node2] = 1
 
-
-                start = length_of_atom_features + index* length_of_bond_features
+                start = length_of_atom_features + index * length_of_bond_features
                 end = start + length_of_bond_features
 
                 self.local_input_vector[idx, node2, start:end] = \
@@ -129,8 +130,9 @@ class Molecule:
         '''
         :return:
         '''
-        cycle_name_format = "R_{:}"
+        cycle_name_format = "R_{:}"  # format to name the contracted rings
         index = 0
+        # return array of egdes of cycle. each edge is represented by an order pair of node numbers
         cycle = self.get_cycle()
 
         while cycle:
@@ -141,8 +143,8 @@ class Molecule:
             self.graph.remove_edges_from(cycle)
 
             for node1, node2 in cycle:
-                if isinstance(node1, six.string_types):
-                    self.graph.add_edge(node1, cycle_name,
+                if isinstance(node1, six.string_types):  # checks if node1 is a ring
+                    self.graph.add_edge(node1, cycle_name,  # adds an adge between rings
                                         attr_dict={"bond_features": Molecule.bond_features_between_contract_rings()})
                     continue
 
@@ -170,7 +172,6 @@ class Molecule:
         nx.draw(self.graph)
         self.no_of_atoms = len(self.graph)
 
-
     def get_atom_features(self, node_id):
         attrs = nx.get_node_attributes(self.graph, "atom_features")
         return attrs[node_id]
@@ -179,6 +180,7 @@ class Molecule:
         attrs = self.graph.get_edge_data(node1, node2)
         return attrs["bond_features"]
 
+    # returns an array [atom type, no.of neighbours, No.of H, implicit valence, aromaticity]
     @staticmethod
     def atom_features(atom):
         return np.array(Molecule.one_of_k_encoding_unk(atom.GetSymbol(),
@@ -218,6 +220,7 @@ class Molecule:
     def bond_features_between_contract_rings():
         return np.array([1, 0, 0, 0, 0, 0])
 
+    # Returns array with bond info
     @staticmethod
     def bond_features(bond):
         bt = bond.GetBondType()

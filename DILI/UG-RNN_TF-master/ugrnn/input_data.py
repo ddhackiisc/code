@@ -6,20 +6,30 @@ import numpy as np
 from six.moves import xrange
 
 from molecule import Molecule
-from utils import read_csv #, permute_data
+from utils import read_csv  # , permute_data
 
 
 class DataSet(object):
 
     def __init__(self, csv_file_path, smile_col_name, target_col_name, logp_col_name=None, contract_rings=False):
-
+        #read_csv is defined in utils.py
+        # It returns a numpy array of ordered pairs (smiles, solubility)
+        # It takes examples from the csv file given by csv_file_path)
+        # data[0][0] = gives smiles notation of first example; as string
+        # data[0][1] = gives solubility of first example; as string
         data = read_csv(csv_file_path, smile_col_name, target_col_name, logp_col_name)
 
+        # gives an array of smiles notations . smiles[0] gives smiles of first example
         smiles = np.array(zip(*data)[0])
-        self._labels = np.array(zip(*data)[1])
+
+        self._labels = np.array(zip(*data)[1])  # stores the labels to self._label
+
         logp = np.array(zip(*data)[2]) if logp_col_name else None
 
         self._num_examples = len(smiles)
+        # The following function is defined at the end of this file
+        # It returns an array of 'Molecule' object defined at molecule.py
+        #
         self._molecules = extract_molecules_from_smiles(smiles, logp, contract_rings)
         self._epochs_completed = 0
         self._index_in_epoch = 0
@@ -51,7 +61,6 @@ class DataSet(object):
         if permute:
             self.permute_data()
 
-
     def next_batch(self, batch_size):
         """Return the next `batch_size` examples from this data set."""
 
@@ -82,5 +91,5 @@ def extract_molecules_from_smiles(SMILES, logp, contract_rings):
         molecule_logp = None
         if logp is not None:
             molecule_logp = logp[i]
-        molecules[i] = Molecule(SMILES[i], molecule_logp, contract_rings)
+        molecules[i] = Molecule(SMILES[i], molecule_logp, contract_rings)  # defined in molecule.py
     return molecules

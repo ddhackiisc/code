@@ -1,4 +1,5 @@
 from __future__ import absolute_import
+import tensorflow as tf
 from __future__ import division
 from __future__ import print_function
 
@@ -13,7 +14,6 @@ from ugrnn import UGRNN
 from utils import model_params
 np.set_printoptions(threshold=np.inf, precision=4)
 
-import tensorflow as tf
 
 FLAGS = None
 
@@ -21,16 +21,20 @@ FLAGS = None
 def main(*args):
     model_dir = os.path.join(FLAGS.output_dir, FLAGS.model_name)
 
+# Check if the specifies directory exists or not and
+# delete it if it exists and make a new one
     if tf.gfile.Exists(model_dir):
         tf.gfile.DeleteRecursively(model_dir)
     tf.gfile.MakeDirs(model_dir)
 
+# Creates a default graph and put all operations and tensors inside the with statement
+# in this graph
     with tf.Graph().as_default():
         # Create a session for running Ops on the Graph.
         sess = tf.Session()
 
         logp_col_name = FLAGS.logp_col if FLAGS.add_logp else None
-
+# The object dataset is defined in input_data.py
         logger.info('Loading Training dataset from {:}'.format(FLAGS.training_file))
         train_dataset = DataSet(csv_file_path=FLAGS.training_file, smile_col_name=FLAGS.smile_col,
                                 target_col_name=FLAGS.target_col, logp_col_name=logp_col_name,
@@ -43,13 +47,10 @@ def main(*args):
 
         logger.info("Creating Graph.")
 
-
         ugrnn_model = UGRNN(FLAGS.model_name, encoding_nn_hidden_size=FLAGS.model_params[0],
                             encoding_nn_output_size=FLAGS.model_params[1], output_nn_hidden_size=FLAGS.model_params[2],
-                            batch_size=FLAGS.batch_size, learning_rate=0.001, add_logp=FLAGS.add_logp, 
+                            batch_size=FLAGS.batch_size, learning_rate=0.001, add_logp=FLAGS.add_logp,
                             clip_gradients=FLAGS.clip_gradient)
-
-
 
         logger.info("Succesfully created graph.")
 
@@ -60,6 +61,8 @@ def main(*args):
         ugrnn_model.save_model(sess, model_dir, FLAGS.max_epochs)
 
 
+# This follwing part of the code just takes the follwing inputs from the
+# command line and passes it to the main functions in the variable FLAGS
 if __name__ == '__main__':
     log_format = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
     logging.basicConfig(level=logging.INFO, format=log_format)
@@ -76,7 +79,8 @@ if __name__ == '__main__':
     parser.add_argument('--batch_size', type=int, default=10,
                         help='Batch size.')
 
-    parser.add_argument('--model_params', help="Model Parameters", dest="model_params", type=model_params, default = '7,7,5')
+    parser.add_argument('--model_params', help="Model Parameters",
+                        dest="model_params", type=model_params, default='7,7,5')
 
     parser.add_argument('--learning_rate', type=float, default=0.001,
                         help='Initial learning rate')
@@ -96,17 +100,13 @@ if __name__ == '__main__':
 
     parser.add_argument('--target_col', type=str, default='solubility')
 
-    parser.add_argument('--contract_rings', dest='contract_rings',default = False)
+    parser.add_argument('--contract_rings', dest='contract_rings', default=False)
 
-    parser.add_argument('--add_logp', dest='add_logp', default = False)
-    
+    parser.add_argument('--add_logp', dest='add_logp', default=False)
+
     parser.add_argument('--clip_gradient', dest='clip_gradient', default=False)
-    
-        
-    
-    
 
     FLAGS = parser.parse_args()
-    
+
     main()
-    #tf.app.run(main=main)
+    # tf.app.run(main=main)
