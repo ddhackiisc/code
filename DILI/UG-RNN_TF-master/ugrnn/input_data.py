@@ -29,7 +29,7 @@ class DataSet(object):
         self._num_examples = len(smiles)
         # The following function is defined at the end of this file
         # It returns an array of 'Molecule' object defined at molecule.py
-        #
+        # Molecle onject contains the the vector in .local_input_varibale
         self._molecules = extract_molecules_from_smiles(smiles, logp, contract_rings)
         self._epochs_completed = 0
         self._index_in_epoch = 0

@@ -39,7 +39,7 @@ def main(*args):
         train_dataset = DataSet(csv_file_path=FLAGS.training_file, smile_col_name=FLAGS.smile_col,
                                 target_col_name=FLAGS.target_col, logp_col_name=logp_col_name,
                                 contract_rings=FLAGS.contract_rings)
-
+# Does the same for validation data set
         logger.info('Loading validation dataset from {:}'.format(FLAGS.validation_file))
         validation_dataset = DataSet(csv_file_path=FLAGS.validation_file, smile_col_name=FLAGS.smile_col,
                                      target_col_name=FLAGS.target_col, logp_col_name=logp_col_name,

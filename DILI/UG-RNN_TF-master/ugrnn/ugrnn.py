@@ -20,8 +20,8 @@ logger = logging.getLogger(__name__)
 
 class UGRNN(object):
     def __init__(self, model_name, encoding_nn_hidden_size, encoding_nn_output_size,
-                 output_nn_hidden_size, batch_size=1, learning_rate=0.001,  add_logp=False, 
-                 clip_gradients = False):
+                 output_nn_hidden_size, batch_size=1, learning_rate=0.001,  add_logp=False,
+                 clip_gradients=False):
         """Build the ugrnn model up to where it may be used for inference."""
 
         # logger.info("Creating the UGRNN")
@@ -31,18 +31,21 @@ class UGRNN(object):
         self.batch_size = batch_size
         self._Unique_ID = str(self).split()[-1][:-1]
         self._clip_gradients = clip_gradients
-        
+
         """Create placeholders"""
         self.local_input_pls = [tf.placeholder(tf.float32, shape=[None, None, Molecule.num_of_features()]) for i in
                                 xrange(self.batch_size)]
-        self.path_pls = [tf.placeholder(tf.int32, shape=[None, None, 3]) for i in xrange(self.batch_size)]
+        self.path_pls = [tf.placeholder(tf.int32, shape=[None, None, 3])
+                         for i in xrange(self.batch_size)]
         self.target_pls = [tf.placeholder(tf.float32) for i in xrange(self.batch_size)]
         self.logp_pls = [tf.placeholder(tf.float32) for i in xrange(self.batch_size)]
         self.sequence_len_pls = [tf.placeholder(tf.int32) for i in xrange(self.batch_size)]
         self.global_step = tf.Variable(0, name='global_step', trainable=False)
-        self.global_step_update_op = tf.assign(self.global_step, tf.add(self.global_step, tf.constant(1)))
+        self.global_step_update_op = tf.assign(
+            self.global_step, tf.add(self.global_step, tf.constant(1)))
 
         """Set the hyperparameters for the model"""
+        # tf.pow takes first tensor raised to senond tensor
         self.learning_rate = learning_rate * tf.pow(config.learning_rate_decay_factor, tf.to_float(self.global_step),
                                                     name=None)
         self.encoding_nn_output_size = encoding_nn_output_size
@@ -56,38 +59,37 @@ class UGRNN(object):
             self.output_nn_input_size = self.encoding_nn_output_size
         self.output_nn_hidden_size = output_nn_hidden_size
 
-        self.initializer_fun = nn_utils.get_initializer(config.initializer)
+        self.initializer_fun = nn_utils.get_initializer(
+            config.initializer)  # sets the activation function
 
         self.flattened_idx_offsets = [(tf.range(0, self.sequence_len_pls[i]) * config.max_seq_len * 4) for i in
-                                      xrange(0, self.batch_size)]
+                                      xrange(0, self.batch_size)]  # Dont know what this is
 
         self.trainable_variables = []
-        self.create_UGRNN_variable()
+        self.create_UGRNN_variable()  # Creates trainable variabales
 
         prediction_op, g_structue = self.add_prediction_op(self.local_input_pls[0],
-                                               self.path_pls[0],
-                                               self.logp_pls[0],
-                                               self.sequence_len_pls[0],
-                                               self.flattened_idx_offsets[0])
+                                                           self.path_pls[0],
+                                                           self.logp_pls[0],
+                                                           self.sequence_len_pls[0],
+                                                           self.flattened_idx_offsets[0])
         self.prediction_ops = [prediction_op]
         self.g_structure_ops = [g_structue]
         for i in xrange(1, self.batch_size):
             with tf.control_dependencies([self.prediction_ops[i - 1]]):
                 prediction_op, g_structue = self.add_prediction_op(self.local_input_pls[i],
-                                                       self.path_pls[i],
-                                                       self.logp_pls[i],
-                                                       self.sequence_len_pls[i],
-                                                       self.flattened_idx_offsets[i])
+                                                                   self.path_pls[i],
+                                                                   self.logp_pls[i],
+                                                                   self.sequence_len_pls[i],
+                                                                   self.flattened_idx_offsets[i])
                 self.prediction_ops.append(prediction_op)
                 self.g_structure_ops.append(g_structue)
 
         self.loss_op = self.add_loss_op()
         self.train_op = self.add_training_ops()
 
-
-
-
     def create_UGRNN_variable(self):
+        # creates variables for encoding nn
         with tf.variable_scope(self._Unique_ID+"EncodingNN") as scope:
             contextual_features = tf.get_variable("contextual_features",
                                                   [config.max_seq_len * config.max_seq_len * 4,
@@ -95,15 +97,18 @@ class UGRNN(object):
                                                   dtype=tf.float32,
                                                   initializer=tf.constant_initializer(0),
                                                   trainable=False)
-
+            # creates variables for encdoing nn hidden layer
             with tf.variable_scope('hidden1') as scope:
+                # initializes tf variables for weights
                 weights = nn_utils.weight_variable([self.encoding_nn_input_size,
-                                                 self.encoding_nn_hidden_size],
-                                                initializer=self.initializer_fun)
+                                                    self.encoding_nn_hidden_size],
+                                                   initializer=self.initializer_fun)
+                # initializes tf variables for baises
                 biases = nn_utils.bias_variable([self.encoding_nn_hidden_size])
+                # Add the created variables to the list of trianable variables
                 self.trainable_variables.append(weights)
                 self.trainable_variables.append(biases)
-
+            # creates variables for encdoing nn output layer
             with tf.variable_scope('output') as scope:
                 weights = nn_utils.weight_variable(
                     [self.encoding_nn_hidden_size,
@@ -113,7 +118,7 @@ class UGRNN(object):
                 biases = nn_utils.bias_variable([self.encoding_nn_output_size])
                 self.trainable_variables.append(weights)
                 self.trainable_variables.append(biases)
-
+        # Does similar things for output NN
         with tf.variable_scope(self._Unique_ID+"OutputNN") as scope:
             with tf.variable_scope('hidden1') as scope:
                 weights = nn_utils.weight_variable(
@@ -181,7 +186,7 @@ class UGRNN(object):
         return tf.less(step, sequence_len - 1)
 
 #    @staticmethod
-    def body(self,sequence_len, step, feature_pl, path_pl, flattened_idx_offset,
+    def body(self, sequence_len, step, feature_pl, path_pl, flattened_idx_offset,
              contextual_features, encoding_nn_output_size):
         zero = tf.constant(0)
         one = tf.constant(1)
@@ -261,9 +266,7 @@ class UGRNN(object):
     def train(self, sess, epochs, train_dataset, validation_dataset, output_dir):
 
         merged_summaries = tf.summary.merge_all()
-        
-        
-        
+
         train_writer = tf.summary.FileWriter(output_dir + '/train', sess.graph)
         #train_writer = tf.train.SummaryWriter(output_dir + '/train', sess.graph)
 
@@ -288,7 +291,7 @@ class UGRNN(object):
         for epoch in xrange(0, epochs):
             for i in xrange(0, steps_in_epoch):
                 feed_dict = self.fill_feed_dict(train_dataset, self.batch_size)
-                _= sess.run([self.train_op], feed_dict=feed_dict)
+                _ = sess.run([self.train_op], feed_dict=feed_dict)
 
             summ = sess.run(merged_summaries)
             train_writer.add_summary(summ, epoch)
@@ -311,12 +314,13 @@ class UGRNN(object):
                 plt.pause(0.05)
                 logger.info(
                     "Epoch: {:}, Learning rate {:.8f}  Train RMSE: {:.4f}, Train AAE: {:.4f} Validation RMSE {:.4f}, Validation AAE {:.4f}".
-                        format(epoch, learning_rate[0], train_metric[0],
-                               train_metric[1], validation_metric[0],
-                               validation_metric[1],
-                               precision=8))
+                    format(epoch, learning_rate[0], train_metric[0],
+                           train_metric[1], validation_metric[0],
+                           validation_metric[1],
+                           precision=8))
 
-        save_results(train_results_file_path, train_dataset.labels, self.predict(sess, train_dataset))
+        save_results(train_results_file_path, train_dataset.labels,
+                     self.predict(sess, train_dataset))
         logger.info('Training Finished')
 
     def evaluate(self, sess,  dataset):
@@ -333,7 +337,7 @@ class UGRNN(object):
             predictions[i] = np.mean(prediction_value)
         return predictions
 
-    def get_g_structure(self,sess,dataset):
+    def get_g_structure(self, sess, dataset):
         dataset.reset_epoch()
         g_structures = np.empty((dataset.num_examples, self.encoding_nn_output_size))
         for i in xrange(0, dataset.num_examples):

@@ -37,9 +37,12 @@ class Molecule:
                                     attr_dict={"bond_features": Molecule.bond_features(bond)})
 
         if contract_rings:
+            # makes the rings of the grpahs into a single node as explaines in the paper and relabels the nodes
             self.reduce_graph_rings()
 
+        # creates an array of directed graphs from the undirected graph  taking each node as sink node
         self.create_directed_graphs()
+        #  creates a local input vector with all teh graph atom and bond features
         self.create_feature_vectors()
 
     def create_directed_graphs(self):
@@ -53,11 +56,14 @@ class Molecule:
         # as the sink node
         for idx in xrange(self.no_of_atoms):
             # get shortest path from the root to all the other atoms and then reverse the edges.
+            # return a dictionary of paths keyed by target name. Each path is am iterable with the nodes of the path
+            # mentioned in order
             path = nx.single_source_dijkstra_path(self.graph, idx)
             G = nx.DiGraph()
+            # goes to each of the nodes of the graph and add it t the current directed graph
             for i in xrange(self.no_of_atoms):
                 temp = path[i]
-                temp.reverse()
+                temp.reverse()  # reverses egde direction of that particular   path
                 G.add_path(temp)
 
             # do a topological sort to get a order of atoms with all edges pointing to the root
@@ -66,6 +72,9 @@ class Molecule:
             sorted_path = np.empty((self.no_of_atoms - 1, 3))
 
             no_of_incoming_edges = {}
+            # slightly comlicated loop but in effect it returns a 3D array with frat dimenstion
+            # itersting through the root node second dimension iterating through each node in the coressponding
+            # directed graph and the thord dimesion is 1x3 array
             for i in xrange(self.no_of_atoms - 1):
                 node = topological_order[i]
                 edge = (nx.edges(G, node))[0]
@@ -92,18 +101,19 @@ class Molecule:
             (self.no_of_atoms, self.no_of_atoms, Molecule.num_of_features()))
 
         for idx in xrange(self.no_of_atoms):
-            sorted_path = self.directed_graphs[idx, :, :]
+            sorted_path = self.directed_graphs[idx, :, :]  # selects each graph based on a root node
 
             self.local_input_vector[idx, idx, :length_of_atom_features] = \
-                self.get_atom_features(idx)
+                self.get_atom_features(
+                    idx)  # adds the atom features of the root node to the locl input cevtor
 
             no_of_incoming_edges = {}
             for i in xrange(self.no_of_atoms - 1):
-                node1 = sorted_path[i, 0]
-                node2 = sorted_path[i, 1]
+                node1 = sorted_path[i, 0]  # node1 is the particular node
+                node2 = sorted_path[i, 1]  # node2 is the parent node of node1
 
                 self.local_input_vector[idx, node1, :length_of_atom_features] = \
-                    self.get_atom_features(node1)
+                    self.get_atom_features(node1)  # adds the atom features of the particular node
 
                 if node2 in no_of_incoming_edges:
                     index = no_of_incoming_edges[node2]
@@ -135,7 +145,7 @@ class Molecule:
         # return array of egdes of cycle. each edge is represented by an order pair of node numbers
         cycle = self.get_cycle()
 
-        while cycle:
+        while cycle:  # while the cycle array is not empty
             cycle_name = cycle_name_format.format(index)
             self.graph.add_node(cycle_name)
 
@@ -144,29 +154,30 @@ class Molecule:
 
             for node1, node2 in cycle:
                 if isinstance(node1, six.string_types):  # checks if node1 is a ring
-                    self.graph.add_edge(node1, cycle_name,  # adds an adge between rings
+                    self.graph.add_edge(node1, cycle_name,  # adds an adge between rings and bond_feaures returns an array with first entry 1 and others 0
                                         attr_dict={"bond_features": Molecule.bond_features_between_contract_rings()})
                     continue
 
                 neighbours = self.graph.neighbors(node1)
-                if not neighbours:
+                if not neighbours:  # means neighbours are also part of cycle
                     continue
                 for neighbour in neighbours:
                     edge_attrs = self.get_bond_features(neighbour, node1)
                     self.graph.add_edge(neighbour, cycle_name, attr_dict={
-                        "bond_features": edge_attrs})
+                        "bond_features": edge_attrs})  # adds an edge between the cycele and neighbours
+                    # removes the edge between neighbour and cycle members
                     self.graph.remove_edge(node1, neighbour)
 
-            nx.set_node_attributes(self.graph, "atom_features",
+            nx.set_node_attributes(self.graph, "atom_features",  # adds
                                    values={cycle_name: Molecule.atom_features_of_contract_rings(0)})
 
             for node1, node2 in cycle:
-                if not isinstance(node1, six.string_types):
-                    self.graph.remove_node(node1)
+                if not isinstance(node1, six.string_types):  # check ifnode1 is not a ring,
+                    self.graph.remove_node(node1)  # then removes it from the graph
             index += 1
-            cycle = self.get_cycle()
+            cycle = self.get_cycle()  # reinitializes the cycle array
 
-        self.graph = nx.convert_node_labels_to_integers(self.graph,
+        self.graph = nx.convert_node_labels_to_integers(self.graph,  # relabels thegraph nodes consecutively
                                                         first_label=0)
 
         nx.draw(self.graph)
