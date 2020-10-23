@@ -163,13 +163,13 @@ def train_predict(X_train, X_test, y_train, y_test, model_no, lossf, kernel_size
     my_model = Resnet.build((2325,), 2, stages, filters, activation,fc_layers, kernel_size=kernel_size, stride=stride, reg=reg)
     my_model.compile(loss=lossf, optimizer=optimizer, metrics=['accuracy', AUC(), f1, matthews_correlation, sensitivity, specificity])
     my_model.fit(X_train, y_train,
-                     batch_size=batch_size, epochs=epochs, verbose=0)
+                     batch_size=batch_size, epochs=epochs, verbose=2)
     result = my_model.evaluate(
-            X_test, y_test, verbose=0)
+            X_test, y_test, verbose=2)
 
     return [model_no, lossf, kernel_size, stages, filters, stride, fc_layers, activation, optimizer, reg, batch_size,\
         epochs, np.mean(loss), np.mean(acc), np.mean(auc), np.mean(f1s), np.mean(mcc), np.mean(sens), np.mean(spec),\
-        scores[0], scores[1]*100, scores[2], scores[3], scores[4], scores[5], scores[6]]
+        result[0], result[1]*100, result[2], result[3], result[4], result[5], result[6]]
 
 
 # Load the data and split it into trianing and independent test set
